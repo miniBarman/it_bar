@@ -16,9 +16,16 @@ public class MainController {
     @Autowired
     private CoctailRepo coctailRepo;
 
+    //just redirection from / to /main
+    //maybe we can use something more smooth???
+    @GetMapping("/")
+    public String main(Model model) {
+        return "redirect:/main";
+    }
+
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Coctail> coctails = coctailRepo.findAll();
+        Iterable<Coctail> coctails;
 
         if (filter != null && !filter.isEmpty()) {
             coctails = coctailRepo.findByName(filter);
@@ -32,11 +39,8 @@ public class MainController {
         return "main";
     }
 
-//    @GetMapping("/add")
-//    public String add(Model model){
-//        return "add";
-//    }
-
+    //don't know but page doesn't work without this stuff
+    //probably there should be at least 1 get method on page
     @GetMapping("/add")
     public String add(Model model){
         return "add";
@@ -48,8 +52,6 @@ public class MainController {
         coctailRepo.save(coctail);
         model.put("message", "Коктейль " + name + " был успешно добавлен");
 
-//        Iterable<Coctail> coctails = coctailRepo.findAll();
-//        model.put("coctails", coctails);
         return "add";
     }
 }
