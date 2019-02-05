@@ -1,5 +1,7 @@
 package com.project.itbar.domain;
 
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,12 +13,26 @@ public class Coctail {
     private String name;
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
     public Coctail() {
     }
 
     public Coctail(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Coctail(String name, String description, User user) {
+        this.author = user;
+        this.name = name;
+        this.description = description;
+    }
+
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "System";
     }
 
     public void setName(String name) {
@@ -41,5 +57,13 @@ public class Coctail {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

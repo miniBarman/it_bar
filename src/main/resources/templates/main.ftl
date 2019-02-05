@@ -13,6 +13,7 @@
     <b>${coctail.id}</b>
     <span>${coctail.name}</span>
     <i>${coctail.description}</i>
+    <i>${coctail.authorName}</i>
 </div>
 <#else>
 No coctails

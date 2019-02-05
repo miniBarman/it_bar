@@ -1,8 +1,10 @@
 package com.project.itbar.controller;
 
 import com.project.itbar.domain.Coctail;
+import com.project.itbar.domain.User;
 import com.project.itbar.repos.CoctailRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,8 +49,8 @@ public class MainController {
     }
 
     @PostMapping("/add")
-    public String add(@RequestParam String name, @RequestParam String description, Map<String, Object> model) {
-        Coctail coctail = new Coctail(name, description);
+    public String add(@AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String description, Map<String, Object> model) {
+        Coctail coctail = new Coctail(name, description, user);
         coctailRepo.save(coctail);
         model.put("message", "Коктейль " + name + " был успешно добавлен");
 
