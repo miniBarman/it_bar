@@ -4,6 +4,7 @@
 
 <div>Список коктейлей</div>
 <form method="get" action="/main">
+    <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <input type="name" name="filter" placeholder="Название" value="${filter?ifExists}">
     <button type="submit">Найти</button>
 </form>
