@@ -12,6 +12,7 @@ public class Coctail {
 
     private String name;
     private String description;
+    private String image;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -30,6 +31,8 @@ public class Coctail {
         this.name = name;
         this.description = description;
     }
+
+    public String getImgAddress(){return image != null ? image : "no_img.png"; }
 
     public String getAuthorName(){
         return author != null ? author.getUsername() : "System";
@@ -65,5 +68,13 @@ public class Coctail {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

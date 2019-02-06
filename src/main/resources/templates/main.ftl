@@ -14,6 +14,9 @@
     <span>${coctail.name}</span>
     <i>${coctail.description}</i>
     <i>${coctail.authorName}</i>
+    <div>
+        <img src="/img/${coctail.imgAddress}">
+    </div>
 </div>
 <#else>
 No coctails

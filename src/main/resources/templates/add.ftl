@@ -4,10 +4,11 @@
 
 <div>Добавление нового коктейля</div>
 <div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <input type="name" name="name" placeholder="Название" />
         <input type="name" name="description" placeholder="Описание">
+        <input type="file" name="file">
         <button type="submit">Добавить</button>
     </form>
 </div>
