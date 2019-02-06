@@ -33,6 +33,12 @@ public class MainController {
         return "redirect:/main";
     }
 
+    //same problem WA for login button
+    @GetMapping("/main_login")
+    public String mainLogin(Model model) {
+        return "redirect:/main";
+    }
+
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Coctail> coctails;

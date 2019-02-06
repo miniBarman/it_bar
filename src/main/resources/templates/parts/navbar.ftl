@@ -12,17 +12,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="/main">Список коктейлей</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/add">Добавить новый коктейль</a>
-            </li>
+            <#if user??>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Добавить новый коктейль</a>
+                </li>
+            </#if>
         </ul>
 
-        <#if isAdmin>
-        <li class="nav-item">
-            <a class="nav-link" href="/user">User list</a>
-        </li>
-    </#if>
-        <div class="navbar-text mr-3">${name}</div>
-        <@l.logout />
+        <#if user??>
+            <div class="navbar-text mr-3">${name}</div>
+            <@l.logout />
+        <#else>
+        <form action="/main_login" method="get">
+            <input type="submit" value="Log In"/>
+        </form>
+        </#if>
+
     </div>
 </nav>
