@@ -1,10 +1,7 @@
 package com.project.itbar.domain;
 
-import org.springframework.data.repository.cdi.Eager;
-
 import javax.persistence.*;
 import java.math.BigInteger;
-import java.util.List;
 
 @Entity
 public class Coctail {
