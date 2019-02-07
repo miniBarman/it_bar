@@ -3,12 +3,14 @@ package com.project.itbar.domain;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 public class Coctail {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private BigInteger id;
 
     private String name;
     private String description;
@@ -17,6 +19,10 @@ public class Coctail {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
+
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "coctailIngredient_coctailId")
+//    private List<CoctailIngredient> ingredientList;
 
     public Coctail() {
     }
@@ -46,11 +52,11 @@ public class Coctail {
         return name;
     }
 
-    public Integer getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
