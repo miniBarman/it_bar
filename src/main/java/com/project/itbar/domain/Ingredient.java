@@ -2,6 +2,7 @@ package com.project.itbar.domain;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.Set;
 
 @Entity
 public class Ingredient {
@@ -17,9 +18,9 @@ public class Ingredient {
     @JoinColumn(name = "user_id")
     private User author;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "coctailIngredient_coctailId")
-//    private List<CoctailIngredient> ingredientList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ingredient_id")
+    private Set<CoctailIngredient> coctailIngredients;
 
     public Ingredient() {
     }
@@ -79,5 +80,13 @@ public class Ingredient {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<CoctailIngredient> getCoctailIngredients() {
+        return coctailIngredients;
+    }
+
+    public void setCoctailIngredients(Set<CoctailIngredient> coctailIngredients) {
+        this.coctailIngredients = coctailIngredients;
     }
 }
