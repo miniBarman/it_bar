@@ -1,8 +1,10 @@
 package com.project.itbar.controller;
 
 import com.project.itbar.domain.Coctail;
+import com.project.itbar.domain.Ingredient;
 import com.project.itbar.domain.User;
 import com.project.itbar.repos.CoctailRepo;
+import com.project.itbar.repos.IngredientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +24,9 @@ import java.util.UUID;
 public class MainController {
     @Autowired
     private CoctailRepo coctailRepo;
+
+    @Autowired
+    private IngredientRepo ingredientRepo;
 
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
@@ -57,13 +62,13 @@ public class MainController {
 
     //don't know but page doesn't work without this stuff
     //probably there should be at least 1 get method on page
-    @GetMapping("/add")
-    public String add(Model model){
-        return "add";
+    @GetMapping("/add_coctail")
+    public String addCoctail(Model model){
+        return "add_coctail";
     }
 
-    @PostMapping("/add")
-    public String add(@AuthenticationPrincipal User user,
+    @PostMapping("/add_coctail")
+    public String addCoctail(@AuthenticationPrincipal User user,
                       @RequestParam String name,
                       @RequestParam String description,
                       Map<String, Object> model,
@@ -88,6 +93,58 @@ public class MainController {
         coctailRepo.save(coctail);
         model.put("message", "Коктейль " + name + " был успешно добавлен");
 
-        return "add";
+        return "add_coctail";
+    }
+
+    //don't know but page doesn't work without this stuff
+    //probably there should be at least 1 get method on page
+    @GetMapping("/add_ingredient")
+    public String addIngredient(Model model){
+        return "add_ingredient";
+    }
+
+    @PostMapping("/add_ingredient")
+    public String addIngredient(@AuthenticationPrincipal User user,
+                             @RequestParam String name,
+                             @RequestParam String description,
+                             Map<String, Object> model,
+                             @RequestParam("file") MultipartFile file) throws IOException {
+
+        Ingredient ingredient = new Ingredient(name, description, user);
+
+        if(file != null  && !file.getOriginalFilename().isEmpty()){
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/img/" + resultFilename));
+
+            ingredient.setImage(resultFilename);
+        }
+        ingredientRepo.save(ingredient);
+        model.put("message", "Ингредиент " + name + " был успешно добавлен");
+
+        return "add_ingredient";
+    }
+
+    @GetMapping("/ingredients")
+    public String getIngredients(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+        Iterable<Ingredient> ingredients;
+
+        if (filter != null && !filter.isEmpty()) {
+            ingredients = ingredientRepo.findByName(filter);
+        } else {
+            ingredients = ingredientRepo.findAll();
+        }
+
+        model.addAttribute("ingredients", ingredients);
+        model.addAttribute("filter", filter);
+
+        return "ingredients";
     }
 }

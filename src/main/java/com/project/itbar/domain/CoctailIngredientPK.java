@@ -23,6 +23,22 @@ public class CoctailIngredientPK implements Serializable {
         this.ingredient = ingredient;
     }
 
+    public Coctail getCoctail() {
+        return coctail;
+    }
+
+    public void setCoctail(Coctail coctail) {
+        this.coctail = coctail;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash( coctail, ingredient );

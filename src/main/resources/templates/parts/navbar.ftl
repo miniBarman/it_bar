@@ -10,12 +10,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/main">Список коктейлей</a>
+                <a class="nav-link" href="/main">Коктейли</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ingredients">Ингредиенты</a>
             </li>
             <#if user??>
                 <li class="nav-item">
-                    <a class="nav-link" href="/add">Добавить новый коктейль</a>
+                    <a class="nav-link" href="/add_coctail">Добавить новый коктейль</a>
                 </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add_ingredient">Добавить новый ингредиент</a>
+            </li>
             </#if>
         </ul>
 
