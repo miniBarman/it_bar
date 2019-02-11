@@ -17,7 +17,7 @@
         <p>${coctail.description}</p>
         <p class="mb-0">
             <#list coctail.coctailIngredients as ingredient>
-                <p>${ingredient.name}</p>
+                <p>${ingredient.volume} мл  ${ingredient.ingredient.name}</p>
             <#else>
                 No ingredients
             </#list>

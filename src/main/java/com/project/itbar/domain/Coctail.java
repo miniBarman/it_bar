@@ -3,7 +3,6 @@ package com.project.itbar.domain;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Coctail {
@@ -21,7 +20,7 @@ public class Coctail {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="coctail_id")
-    private Set<CoctailIngredient> coctailIngredients;
+    private List<CoctailIngredient> coctailIngredients;
 
     public Coctail() {
     }
@@ -83,11 +82,11 @@ public class Coctail {
         this.image = image;
     }
 
-    public Set<CoctailIngredient> getIngredientList() {
+    public List<CoctailIngredient> getCoctailIngredients() {
         return coctailIngredients;
     }
 
-    public void setIngredientList(Set<CoctailIngredient> coctailIngredients) {
+    public void setCoctailIngredients(List<CoctailIngredient> coctailIngredients) {
         this.coctailIngredients = coctailIngredients;
     }
 }
