@@ -1,6 +1,7 @@
 package com.project.itbar.controller;
 
 import com.project.itbar.domain.Coctail;
+import com.project.itbar.domain.CoctailIngredient;
 import com.project.itbar.domain.Ingredient;
 import com.project.itbar.domain.User;
 import com.project.itbar.repos.CoctailRepo;
@@ -11,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -146,5 +148,15 @@ public class MainController {
         model.addAttribute("filter", filter);
 
         return "ingredients";
+    }
+
+    @GetMapping("ingredient/{ingredient}")
+    public String ingredient(@PathVariable Ingredient ingredient, Model model) {
+        model.addAttribute("ingredient", ingredient);
+
+        Iterable<CoctailIngredient> coctailIngredients = ingredient.getCoctailIngredients();
+        model.addAttribute("coctailIngredients", coctailIngredients);
+
+        return "ingredient";
     }
 }

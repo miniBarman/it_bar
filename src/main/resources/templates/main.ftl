@@ -17,7 +17,9 @@
         <p>${coctail.description}</p>
         <p class="mb-0">
             <#list coctail.coctailIngredients as ingredient>
-                <p>${ingredient.volume} мл  ${ingredient.ingredient.name}</p>
+                <p>
+                    <a href="/ingredient/${ingredient.ingredient}"> ${ingredient.volume} мл  ${ingredient.ingredient.name}</a>
+                </p>
             <#else>
                 No ingredients
             </#list>
