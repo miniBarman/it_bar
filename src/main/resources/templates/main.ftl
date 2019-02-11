@@ -18,7 +18,7 @@
         <p class="mb-0">
             <#list coctail.coctailIngredients as ingredient>
                 <p>
-                    <a href="/ingredient/${ingredient.ingredient}"> ${ingredient.volume} мл  ${ingredient.ingredient.name}</a>
+                    <a href="/ingredient/${ingredient.ingredient.id}"> ${ingredient.volume} мл  ${ingredient.ingredient.name}</a>
                 </p>
             <#else>
                 No ingredients

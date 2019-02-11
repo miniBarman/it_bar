@@ -4,6 +4,7 @@ import com.project.itbar.domain.Coctail;
 import com.project.itbar.domain.CoctailIngredient;
 import com.project.itbar.domain.Ingredient;
 import com.project.itbar.domain.User;
+import com.project.itbar.repos.CoctailIngredientRepo;
 import com.project.itbar.repos.CoctailRepo;
 import com.project.itbar.repos.IngredientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,9 +29,10 @@ import java.util.UUID;
 public class MainController {
     @Autowired
     private CoctailRepo coctailRepo;
-
     @Autowired
     private IngredientRepo ingredientRepo;
+    @Autowired
+    private CoctailIngredientRepo coctailIngredientRepo;
 
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
@@ -154,8 +158,15 @@ public class MainController {
     public String ingredient(@PathVariable Ingredient ingredient, Model model) {
         model.addAttribute("ingredient", ingredient);
 
-        Iterable<CoctailIngredient> coctailIngredients = ingredient.getCoctailIngredients();
-        model.addAttribute("coctailIngredients", coctailIngredients);
+        List<CoctailIngredient> coctailIngredients = coctailIngredientRepo.findByCoctailIngredientPKIngredient(ingredient);
+
+        //toporno?
+        List<Coctail> coctails = new LinkedList<>();
+        for(CoctailIngredient coctailIngredient : coctailIngredients){
+            coctails.add(coctailIngredient.getCoctail());
+        }
+
+        model.addAttribute("coctails", coctails);
 
         return "ingredient";
     }
