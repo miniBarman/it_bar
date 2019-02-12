@@ -11,6 +11,7 @@ create table coctail (
 
 create table coctail_ingredient (
 	volume float4 not null,
+	unit varchar(255),
 	coctail_id numeric(19, 2) not null,
 	ingredient_id numeric(19, 2) not null,
 	primary key (coctail_id, ingredient_id)
@@ -20,6 +21,7 @@ create table ingredient (
 	id numeric(19, 2) not null,
 	description varchar(2048),
 	image varchar(255),
+	ingredient_group varchar(255),
 	name varchar(255),
 	user_id numeric(19, 2),
 	primary key (id)

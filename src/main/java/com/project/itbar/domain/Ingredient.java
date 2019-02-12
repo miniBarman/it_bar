@@ -23,6 +23,9 @@ public class Ingredient {
     @JoinColumn(name = "ingredient_id")
     private List<CoctailIngredient> coctailIngredients;
 
+    @Enumerated(EnumType.STRING)
+    private IngredientGroup ingredientGroup;
+
     public Ingredient() {
     }
 
@@ -89,5 +92,13 @@ public class Ingredient {
 
     public void setCoctailIngredients(List<CoctailIngredient> coctailIngredients) {
         this.coctailIngredients = coctailIngredients;
+    }
+
+    public IngredientGroup getIngredientGroup() {
+        return ingredientGroup;
+    }
+
+    public void setIngredientGroup(IngredientGroup ingredientGroup) {
+        this.ingredientGroup = ingredientGroup;
     }
 }

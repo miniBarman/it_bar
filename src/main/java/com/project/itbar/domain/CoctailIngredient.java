@@ -12,6 +12,7 @@ public class CoctailIngredient {
     CoctailIngredientPK coctailIngredientPK;
 
     float volume;
+    String unit;
 
     public CoctailIngredientPK getCoctailIngredientPK() {
         return coctailIngredientPK;
@@ -35,5 +36,13 @@ public class CoctailIngredient {
 
     public void setVolume(float volume) {
         this.volume = volume;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
