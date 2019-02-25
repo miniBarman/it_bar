@@ -35,6 +35,11 @@ create table usr (
 	primary key (id)
 );
 
+create table usr_bar_ingredients (
+    user_id numeric(19, 2) not null,
+    bar_ingredients_id numeric(19, 2) not null
+);
+
 alter table if exists coctail
 add constraint coctail_user_fk
 foreign key (user_id)
@@ -52,5 +57,15 @@ references ingredient;
 
 alter table if exists ingredient
 add constraint ingredient_user_fk
+foreign key (user_id)
+references usr;
+
+alter table if exists usr_bar_ingredients
+add constraint usr_bar_ingredients_ingredient_fk
+foreign key (bar_ingredients_id)
+references ingredient;
+
+alter table if exists usr_bar_ingredients
+add constraint usr_bar_ingredients_usr_fk
 foreign key (user_id)
 references usr;

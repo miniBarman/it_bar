@@ -7,6 +7,7 @@ import com.project.itbar.domain.User;
 import com.project.itbar.repos.CoctailIngredientRepo;
 import com.project.itbar.repos.CoctailRepo;
 import com.project.itbar.repos.IngredientRepo;
+import com.project.itbar.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,6 +34,8 @@ public class MainController {
     private IngredientRepo ingredientRepo;
     @Autowired
     private CoctailIngredientRepo coctailIngredientRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
@@ -169,5 +172,16 @@ public class MainController {
         model.addAttribute("coctails", coctails);
 
         return "ingredient";
+    }
+
+    @PostMapping("/add_ingredient_to_bar")
+    public String addIngredientToBar(@AuthenticationPrincipal User user,
+                                @RequestParam Ingredient ingredient,
+                                Map<String, Object> model){
+
+        user.getBarIngredients().add(ingredient);
+        userRepo.save(user);
+
+        return "ingredients";
     }
 }

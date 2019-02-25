@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
@@ -16,6 +17,10 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="ingredient_id")
+    private List<Ingredient> barIngredients;
 
     public BigInteger getId() {
         return id;
@@ -69,4 +74,11 @@ public class User implements UserDetails {
         this.active = active;
     }
 
+    public List<Ingredient> getBarIngredients() {
+        return barIngredients;
+    }
+
+    public void setBarIngredients(List<Ingredient> barIngredients) {
+        this.barIngredients = barIngredients;
+    }
 }
