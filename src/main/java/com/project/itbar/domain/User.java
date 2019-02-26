@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "usr")
@@ -18,7 +19,7 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="ingredient_id")
     private List<Ingredient> barIngredients;
 
@@ -80,5 +81,11 @@ public class User implements UserDetails {
 
     public void setBarIngredients(List<Ingredient> barIngredients) {
         this.barIngredients = barIngredients;
+    }
+
+    public List<BigInteger> getBarIngredientIds() {
+        return barIngredients.stream()
+                .map(Ingredient::getId)
+                .collect(Collectors.toList());
     }
 }

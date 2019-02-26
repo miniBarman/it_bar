@@ -176,12 +176,21 @@ public class MainController {
 
     @PostMapping("/add_ingredient_to_bar")
     public String addIngredientToBar(@AuthenticationPrincipal User user,
-                                @RequestParam Ingredient ingredient,
-                                Map<String, Object> model){
+                                @RequestParam Ingredient ingredient, Model model){
 
         user.getBarIngredients().add(ingredient);
         userRepo.save(user);
 
-        return "ingredients";
+        return getIngredients("", model);
+    }
+
+    @PostMapping("/delete_ingredient_from_bar")
+    public String deleteIngredientFromBar(@AuthenticationPrincipal User user,
+                                     @RequestParam Ingredient ingredient, Model model){
+
+        user.getBarIngredients().remove(ingredient);
+        userRepo.save(user);
+        
+        return getIngredients("", model);
     }
 }

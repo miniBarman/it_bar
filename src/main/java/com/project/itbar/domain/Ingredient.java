@@ -3,6 +3,7 @@ package com.project.itbar.domain;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -100,5 +101,23 @@ public class Ingredient {
 
     public void setIngredientGroup(IngredientGroup ingredientGroup) {
         this.ingredientGroup = ingredientGroup;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( id );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if ( this == o ) {
+            return true;
+        }
+        if ( o == null || getClass() != o.getClass() ) {
+            return false;
+        }
+
+        Ingredient ingr = (Ingredient) o;
+        return Objects.equals( id, ingr.id );
     }
 }
