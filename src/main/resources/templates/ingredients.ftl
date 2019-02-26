@@ -3,12 +3,14 @@
 
 <@c.page>
 
-
-<form method="get" action="/ingredients">
+<form class="ui-widget" method="get" action="/ingredients">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <input type="name" name="filter" placeholder="Название" value="${filter?ifExists}">
+    <label for="tags">Tags: </label>
+    <input id="tags" type="name" name="filter" placeholder="Название" value="${filter?ifExists}">
     <button type="submit">Найти</button>
 </form>
+
+
 
 <#list ingredients as ingredient>
 <div class="media mt-3">

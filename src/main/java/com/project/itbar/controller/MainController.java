@@ -1,5 +1,6 @@
 package com.project.itbar.controller;
 
+import com.google.common.collect.Lists;
 import com.project.itbar.domain.Coctail;
 import com.project.itbar.domain.CoctailIngredient;
 import com.project.itbar.domain.Ingredient;
@@ -25,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -152,8 +154,18 @@ public class MainController {
         }
 
         model.addAttribute("ingredients", ingredients);
+        model.addAttribute("ingredientNames", Lists.newArrayList(ingredients).stream()
+                .map(Ingredient::getName).collect(Collectors.toList()));
         model.addAttribute("filter", filter);
 
+        return "ingredients";
+    }
+
+    @GetMapping("/ingredient_names")
+    public String getIngredientNames(Model model) {
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+        model.addAttribute("ingredientNames", Lists.newArrayList(ingredients).stream()
+                .map(Ingredient::getName).collect(Collectors.toList()));
         return "ingredients";
     }
 
@@ -190,7 +202,7 @@ public class MainController {
 
         user.getBarIngredients().remove(ingredient);
         userRepo.save(user);
-        
+
         return getIngredients("", model);
     }
 }
