@@ -8,15 +8,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>
 <body>
 <#include "navbar.ftl">
 <div class="container mt-5">
-    <#list ingredientNames as name>
-    <label>${name}</label>
-</#list>
-
     <#nested>
 </div>
 <!-- Optional JavaScript -->
@@ -26,16 +23,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    var availableTags = ${ingredientNames};
-
-    $( "#tags" ).autocomplete({
-      source: availableTags
+<#if ingredients??>
+    <script type="text/javascript">
+    $( function() {
+        var availableTags = [<#list ingredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
     });
-  } );
-  console.log(availableTags);
-  </script>
+    </script>
+</#if>
 </body>
 </html>
 </#macro>

@@ -5,7 +5,6 @@
 
 <form class="ui-widget" method="get" action="/ingredients">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <label for="tags">Tags: </label>
     <input id="tags" type="name" name="filter" placeholder="Название" value="${filter?ifExists}">
     <button type="submit">Найти</button>
 </form>
