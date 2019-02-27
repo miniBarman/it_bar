@@ -15,18 +15,23 @@
             <li class="nav-item">
                 <a class="nav-link" href="/ingredients">Ингредиенты</a>
             </li>
-            <#if user??>
-                <li class="nav-item">
-                    <a class="nav-link" href="/add_coctail">Добавить новый коктейль</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/add_ingredient">Добавить новый ингредиент</a>
-            </li>
-            </#if>
         </ul>
 
         <#if user??>
-            <div class="navbar-text mr-3">${name}</div>
+        <div class="btn-group">
+            <div class="btn-group dropleft" role="group">
+                <button type="button" class="btn btn-light btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropleft</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/add_coctail">Добавить новый коктейль</a>
+                    <a class="dropdown-item"href="/add_ingredient">Добавить новый ингредиент</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+            <button type="button" class="btn btn-light btn-secondary">${name}</button>
+        </div>
+
             <@l.logout />
         <#else>
         <form action="/main_login" method="get">

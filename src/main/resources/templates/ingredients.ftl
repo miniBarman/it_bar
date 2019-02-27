@@ -3,20 +3,21 @@
 
 <@c.page>
 
-<form class="ui-widget" method="get" action="/ingredients">
+<form class="input-group mb-3" method="get" action="/ingredients">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <input id="tags" type="name" name="filter" placeholder="Название" value="${filter?ifExists}">
-    <button type="submit">Найти</button>
+    <input id="tags" type="name" name="filter" class="form-control" placeholder="Название" value="${filter?ifExists}" aria-describedby="button-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Найти</button>
+    </div>
 </form>
 
-
+<div class="card-columns mt-3">
 
 <#list ingredients as ingredient>
-<div class="media mt-3">
-    <img src="/img/${ingredient.imgAddress}" class="align-self-center mr-3" alt="Изображение ${ingredient.name}">
-    <div class="media-body">
-        <h5 class="mt-0"><i>${ingredient.name}</i></h5>
-        <p>${ingredient.description}</p>
+<div class="card text-center" style="width: 18rem;">
+    <img src="/img/initial_data/ico/ingredient_ico.jpg" class="card-img-top" alt="Изображение ${ingredient.name}">
+    <div class="card-body">
+        <h5 class="card-title">${ingredient.name}</h5>
         <#if user??>
             <#if user.barIngredientIds?seqContains(ingredient.id)>
                 <form action="/delete_ingredient_from_bar" method="post">
@@ -35,7 +36,7 @@
         </#if>
     </div>
 </div>
-<#else>
-No ingredients
 </#list>
+</div>
+
 </@c.page>

@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -152,6 +153,7 @@ public class MainController {
         }
 
         model.addAttribute("ingredients", ingredients);
+        model.addAttribute("allIngredients", ingredientRepo.findAll());
         model.addAttribute("filter", filter);
 
         return "ingredients";
@@ -159,16 +161,10 @@ public class MainController {
 
     @GetMapping("ingredient/{ingredient}")
     public String ingredient(@PathVariable Ingredient ingredient, Model model) {
+
         model.addAttribute("ingredient", ingredient);
-
         List<CoctailIngredient> coctailIngredients = coctailIngredientRepo.findByCoctailIngredientPKIngredient(ingredient);
-
-        //toporno?
-        List<Coctail> coctails = new LinkedList<>();
-        for(CoctailIngredient coctailIngredient : coctailIngredients){
-            coctails.add(coctailIngredient.getCoctail());
-        }
-
+        List<Coctail> coctails =  coctailIngredients.stream().map(CoctailIngredient::getCoctail).collect(Collectors.toList());
         model.addAttribute("coctails", coctails);
 
         return "ingredient";

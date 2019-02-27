@@ -26,7 +26,7 @@
 <#if ingredients??>
     <script type="text/javascript">
     $( function() {
-        var availableTags = [<#list ingredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
+        var availableTags = [<#list allIngredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
         $( "#tags" ).autocomplete({
             source: availableTags
         });
