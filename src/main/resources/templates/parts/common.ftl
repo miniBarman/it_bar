@@ -26,9 +26,20 @@
 <#if ingredients??>
     <script type="text/javascript">
     $( function() {
-        var availableTags = [<#list allIngredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
-        $( "#tags" ).autocomplete({
-            source: availableTags
+        var availableIngredientList = [<#list allIngredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
+        $( "#ingredientList" ).autocomplete({
+            source: availableIngredientList
+        });
+    });
+    </script>
+</#if>
+
+<#if coctails??>
+<script type="text/javascript">
+    $( function() {
+        var availableCoctailList = [<#list coctails as coctail>"${coctail.name}"<#sep>, </#list>];
+        $( "#coctailList" ).autocomplete({
+            source: availableCoctailList
         });
     });
     </script>

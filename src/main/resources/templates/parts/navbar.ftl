@@ -29,14 +29,18 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
-            <button type="button" class="btn btn-light btn-secondary">${name}</button>
+            <form action="/user/${user.id}" method="get">
+                <button type="button" class="btn btn-light btn-secondary">${name}</button>
+            </form>
         </div>
+        <@l.logout />
 
-            <@l.logout />
         <#else>
+
         <form action="/main_login" method="get">
-            <input type="submit" value="Log In"/>
+            <button type="submit" class="btn btn-light">Log In</button>
         </form>
+
         </#if>
 
     </div>

@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<p><h3>${ingredient.name}</h3>></p>
+<p><h3>${ingredient.name}</h3></p>
 <img src="/img/${ingredient.imgAddress}" class="align-self-center mr-3" alt="${ingredient.name} picture">
 <p>${ingredient.description}</p>
 
