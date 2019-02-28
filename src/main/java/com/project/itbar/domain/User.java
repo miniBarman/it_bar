@@ -17,6 +17,9 @@ public class User implements UserDetails {
     private BigInteger id;
     private String username;
     private String password;
+
+    private String email;
+    private String activationCode;
     private boolean active;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -81,6 +84,22 @@ public class User implements UserDetails {
 
     public void setBarIngredients(List<Ingredient> barIngredients) {
         this.barIngredients = barIngredients;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     public List<BigInteger> getBarIngredientIds() {

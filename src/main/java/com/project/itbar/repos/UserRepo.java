@@ -7,4 +7,6 @@ import java.math.BigInteger;
 
 public interface UserRepo extends JpaRepository<User, BigInteger> {
     User findByUsername(String username);
+
+    User findByActivationCode(String code);
 }

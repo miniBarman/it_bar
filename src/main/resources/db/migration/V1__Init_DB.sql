@@ -30,8 +30,10 @@ create table ingredient (
 create table usr (
 	id numeric(19, 2) not null,
 	active boolean not null,
-	password varchar(255),
-	username varchar(255),
+	password varchar(255) not null,
+	username varchar(255) not null,
+	email varchar(255),
+	activation_code varchar(255),
 	primary key (id)
 );
 

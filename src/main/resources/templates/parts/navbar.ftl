@@ -29,9 +29,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
-            <form action="/user/${user.id}" method="get">
-                <button type="button" class="btn btn-light btn-secondary">${name}</button>
-            </form>
+            <a class="btn btn-light btn-secondary" href="/user/profile" role="button">${name}</a>
         </div>
         <@l.logout />
 

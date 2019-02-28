@@ -3,6 +3,7 @@ package com.project.itbar.controller;
 import com.project.itbar.domain.User;
 import com.project.itbar.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,32 +19,18 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    @GetMapping
-    public String userList(Model model) {
-        model.addAttribute("users", userRepo.findAll());
-
-        return "userList";
+    @GetMapping("/profile")
+    public String getProfile(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("userName", user.getUsername());
+        model.addAttribute("userEmail", "test");
+        return "profile";
     }
 
-    @GetMapping("{user}")
-    public String userEditForm(@PathVariable User user, Model model) {
-        model.addAttribute("user", user);
-
-        return "userEdit";
-    }
-
-    @PostMapping
-    public String userSave(
-            @RequestParam String username,
-            @RequestParam Map<String, String> form,
-            @RequestParam("userId") User user,
-            Model model
-    ) {
-        user.setUsername(username);
-        userRepo.save(user);
-        //ToDo не отображается сообщение
-        model.addAttribute("message", "Изменения были успешно сохранены");
-
-        return "redirect:/user/"+user.getId();
+    @PostMapping("/profile")
+    public String editProfile(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("userName", user.getUsername());
+        model.addAttribute("userEmail", user.getEmail());
+        return "profile";
     }
 }
+

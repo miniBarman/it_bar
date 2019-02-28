@@ -1,19 +1,20 @@
 package com.project.itbar.controller;
 
 import com.project.itbar.domain.User;
-import com.project.itbar.repos.UserRepo;
+import com.project.itbar.service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Collections;
 import java.util.Map;
 
 @Controller
 public class RegistrationController {
     @Autowired
-    private UserRepo userRepo;
+    private UserSevice userSevice;
 
     @GetMapping("/registration")
     public String registration() {
@@ -21,17 +22,28 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            model.put("sysMessage", "User exists!");
+    public String addUser(User user, Model model) {
+        if (!userSevice.addUser(user)) {
+            model.addAttribute("message", "Такой пользователь уже существует!");
             return "registration";
+        }else{
+            if (user.getEmail() != null) {
+                model.addAttribute("message", "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для подтверждения");
+            }
+            return "redirect:/login";
         }
+    }
 
-        user.setActive(true);
-        userRepo.save(user);
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code){
 
-        return "redirect:/login";
+        boolean isActivated = userSevice.activateUser(code);
+
+        if(isActivated){
+            model.addAttribute("message", "Почта успешно подтверждена");
+        }else {
+            model.addAttribute("message", "Подтверждение почты не удалось. Активационный код не найден.");
+        }
+        return "login";
     }
 }

@@ -189,4 +189,5 @@ public class MainController {
 
         return getIngredients("", model);
     }
+
 }
