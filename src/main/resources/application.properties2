@@ -8,11 +8,11 @@ spring.jpa.hibernate.ddl-auto=validate
 
 spring.freemarker.expose-request-attributes=true
 
-upload.path=C:/Projects/it_bar/uploads
-server.uri=http://localhost:8080
+upload.path=/projects/itbar/uploads
+server.uri=http://itbar.ml:8080
 
 spring.mail.host=smtp.yandex.ru
-spring.mail.username=gregobdolbaev@yandex.ru
+spring.mail.username=gregobdolbaev@ya.ru
 spring.mail.password=511213Greg
 spring.mail.port=465
 spring.mail.protocol=smtps
