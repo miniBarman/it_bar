@@ -2,9 +2,9 @@ create sequence hibernate_sequence start 1 increment 1;
 
 create table coctail (
 	id numeric(19, 2) not null,
-	description varchar(2048),
+	name varchar(255) not null,
 	image varchar(255),
-	name varchar(255),
+	description varchar(2048),
 	user_id numeric(19, 2),
 	primary key (id)
 );
@@ -19,10 +19,10 @@ create table coctail_ingredient (
 
 create table ingredient (
 	id numeric(19, 2) not null,
-	description varchar(2048),
-	image varchar(255),
-	ingredient_group varchar(255),
 	name varchar(255),
+	ingredient_group varchar(255),
+	image varchar(255),
+	description varchar(2048),
 	user_id numeric(19, 2),
 	primary key (id)
 );

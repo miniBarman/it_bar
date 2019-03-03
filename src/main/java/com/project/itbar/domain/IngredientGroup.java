@@ -6,11 +6,13 @@ public enum IngredientGroup {
     LIQUEUR,
     BITTER,
     VINE,
+    BEER,
     SYRUP,
     JUICE,
     NON_ALCH_DRINK,
     FRUIT,
-    PLANTS,
+    HERBS,
+    SAUCE_OIL,
     ICE;
 
     IngredientGroup() {
