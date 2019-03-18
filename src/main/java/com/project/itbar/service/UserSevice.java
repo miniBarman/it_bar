@@ -40,7 +40,7 @@ public class UserSevice implements UserDetailsService {
 
         if(!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
-                    "Добрый день, %s! \n "+
+                    "Добрый день, %s!" + System.lineSeparator() +
                             "Добро пожаловать на сайт ItBar! Для окончания регистрации, пожалуйста пройди по ссылке: %s/activate/%s",
                     user.getUsername(), serverURI, user.getActivationCode());
 
