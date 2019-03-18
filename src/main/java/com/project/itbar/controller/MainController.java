@@ -1,9 +1,6 @@
 package com.project.itbar.controller;
 
-import com.project.itbar.domain.Coctail;
-import com.project.itbar.domain.CoctailIngredient;
-import com.project.itbar.domain.Ingredient;
-import com.project.itbar.domain.User;
+import com.project.itbar.domain.*;
 import com.project.itbar.repos.CoctailIngredientRepo;
 import com.project.itbar.repos.CoctailRepo;
 import com.project.itbar.repos.IngredientRepo;
@@ -21,10 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -144,15 +138,20 @@ public class MainController {
 
     @GetMapping("/ingredients")
     public String getIngredients(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Ingredient> ingredients;
-
         if (filter != null && !filter.isEmpty()) {
-            ingredients = ingredientRepo.findByName(filter);
-        } else {
-            ingredients = ingredientRepo.findAll();
+            Iterable<Ingredient> ingredients = ingredientRepo.findByName(filter);
+            model.addAttribute("ingredients", ingredients);
         }
 
-        model.addAttribute("ingredients", ingredients);
+        Map<String, Iterable<Ingredient>> ingredientsByGroups = new HashMap<>();
+        for (IngredientGroup group : IngredientGroup.values()) {
+            Iterable<Ingredient> ingredientsByGroup = ingredientRepo.findByIngredientGroup(group);
+            if (ingredientsByGroup != null)
+                ingredientsByGroups.put(group.name(), ingredientsByGroup);
+        }
+        System.out.println(ingredientsByGroups);
+
+        model.addAttribute("ingredientsByGroups", ingredientsByGroups);
         model.addAttribute("allIngredients", ingredientRepo.findAll());
         model.addAttribute("filter", filter);
 
