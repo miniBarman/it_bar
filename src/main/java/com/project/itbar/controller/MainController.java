@@ -5,6 +5,7 @@ import com.project.itbar.repos.CoctailIngredientRepo;
 import com.project.itbar.repos.CoctailRepo;
 import com.project.itbar.repos.IngredientRepo;
 import com.project.itbar.repos.UserRepo;
+import com.project.itbar.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -147,7 +148,7 @@ public class MainController {
         for (IngredientGroup group : IngredientGroup.values()) {
             Iterable<Ingredient> ingredientsByGroup = ingredientRepo.findByIngredientGroup(group);
             if (ingredientsByGroup != null)
-                ingredientsByGroups.put(group.name(), ingredientsByGroup);
+                ingredientsByGroups.put(Constants.INGREDIENT_GROUP_MAPPING.get(group.name()), ingredientsByGroup);
         }
         System.out.println(ingredientsByGroups);
 
