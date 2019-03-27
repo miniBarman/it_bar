@@ -1,4 +1,5 @@
 create sequence hibernate_sequence start 1 increment 1;
+create sequence jpa_sequence start 2 increment 1;
 
 create table coctail (
 	id numeric(19, 2) not null,
