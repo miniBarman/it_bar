@@ -65,6 +65,59 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/possible_coctails")
+    public String possibleCoctails(@AuthenticationPrincipal User user,
+                                   @RequestParam(required = false, defaultValue = "") String filter,
+                                   Model model) {
+        Iterable<Coctail> coctails;
+
+        if (filter != null && !filter.isEmpty()) {
+            coctails = coctailRepo.findByName(filter);
+        } else {
+            coctails = coctailRepo.findAll();
+        }
+
+        Map<Integer, Map<Coctail, List<Ingredient>>> cocteilsByExistenceInBar = sortByExistence(coctails, user.getBarIngredients());
+
+        model.addAttribute("cocteilsByExistenceInBar", cocteilsByExistenceInBar);
+        model.addAttribute("filter", filter);
+
+        return "possible_coctails";
+    }
+
+    private Map<Integer, Map<Coctail, List<Ingredient>>> sortByExistence(Iterable<Coctail> coctails, List<Ingredient> ingredients) {
+        Map<Integer, Map<Coctail, List<Ingredient>>> resultMap = new HashMap<>();
+
+        for (Coctail coctail : coctails){
+            System.out.println("processing: " + coctail.getName());
+            List<Ingredient> missingIngredientsList = getMissingIngredientsList(coctail, ingredients);
+            int missingIngredientsCount = missingIngredientsList != null ? missingIngredientsList.size() : 0;
+            System.out.println("missingIngredientsCount: " + missingIngredientsCount);
+            Map<Coctail, List<Ingredient>> coctailWithMissingIngredients = resultMap.get(missingIngredientsCount);
+            if (coctailWithMissingIngredients == null){
+                System.out.println("There is no map for this count");
+                coctailWithMissingIngredients = new HashMap<>();
+                resultMap.put(missingIngredientsCount, coctailWithMissingIngredients);
+            }
+            System.out.println("put coctail map for " + coctail);
+            coctailWithMissingIngredients.put(coctail, missingIngredientsList);
+        }
+        return resultMap;
+    }
+
+    private List<Ingredient> getMissingIngredientsList(Coctail coctail, List<Ingredient> ingredients) {
+        List<Ingredient> missingIngredients = new LinkedList();
+        for(CoctailIngredient coctailIngredient : coctail.getCoctailIngredients()){
+            Ingredient ingredient = coctailIngredient.getIngredient();
+            System.out.println("processing: " + ingredient.getName());
+            if(!ingredients.contains(ingredient)){
+                System.out.println("ingredient is missing");
+                missingIngredients.add(ingredient);
+            }
+        }
+        return missingIngredients;
+    }
+
     //don't know but page doesn't work without this stuff
     //probably there should be at least 1 get method on page
     @GetMapping("/add_coctail")
