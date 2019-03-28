@@ -26,7 +26,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/add_coctail">Добавить новый коктейль</a>
                     <a class="dropdown-item"href="/add_ingredient">Добавить новый ингредиент</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="/possible_coctails">Коктейли из бара</a>
                 </div>
             </div>
             <a class="btn btn-light btn-secondary" href="/user/profile" role="button">${name}</a>

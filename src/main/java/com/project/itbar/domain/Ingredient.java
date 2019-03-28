@@ -1,5 +1,7 @@
 package com.project.itbar.domain;
 
+import com.project.itbar.utils.Constants;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.List;
@@ -101,6 +103,10 @@ public class Ingredient {
 
     public void setIngredientGroup(IngredientGroup ingredientGroup) {
         this.ingredientGroup = ingredientGroup;
+    }
+
+    public String getIngredientGroupValue(){
+        return Constants.INGREDIENT_GROUP_MAPPING.get(ingredientGroup);
     }
 
     @Override
