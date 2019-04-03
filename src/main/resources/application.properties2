@@ -8,8 +8,11 @@ spring.jpa.hibernate.ddl-auto=validate
 
 spring.freemarker.expose-request-attributes=true
 
+http.port=80
+server.port=443
+
 upload.path=/projects/itbar/uploads
-server.uri=http://itbar.ml:8080
+server.uri=itbar.ml
 
 spring.mail.host=smtp.yandex.ru
 spring.mail.username=gregobdolbaev@ya.ru
@@ -17,3 +20,9 @@ spring.mail.password=511213Greg
 spring.mail.port=465
 spring.mail.protocol=smtps
 mail.debug=true
+
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store=classpath:keystore/itbar.p12
+server.ssl.key-store-password=M0rt41K0mb4t
+server.ssl.key-alias=itbar
+security.require-ssl=true
