@@ -112,8 +112,6 @@ public class MainController {
         return missingIngredients;
     }
 
-    //don't know but page doesn't work without this stuff
-    //probably there should be at least 1 get method on page
     @GetMapping("/add_coctail")
     public String addCoctail(Model model){
         return "add_coctail";
@@ -148,8 +146,6 @@ public class MainController {
         return "add_coctail";
     }
 
-    //don't know but page doesn't work without this stuff
-    //probably there should be at least 1 get method on page
     @GetMapping("/add_ingredient")
     public String addIngredient(Model model){
         return "add_ingredient";
@@ -224,7 +220,7 @@ public class MainController {
         user.getBarIngredients().add(ingredient);
         userRepo.save(user);
 
-        return getIngredients("", model);
+        return "redirect:/ingredients";
     }
 
     @PostMapping("/delete_ingredient_from_bar")
@@ -234,7 +230,7 @@ public class MainController {
         user.getBarIngredients().remove(ingredient);
         userRepo.save(user);
 
-        return getIngredients("", model);
+        return "redirect:/ingredients";
     }
 
 }

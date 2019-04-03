@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class RegistrationController {
             if (user.getEmail() != null) {
                 model.addAttribute("message", "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для подтверждения");
             }
-            return "redirect:/login";
+            return "login-view";
         }
     }
 

@@ -11,6 +11,7 @@ spring.freemarker.expose-request-attributes=true
 http.port=80
 server.port=443
 
+upload.protocol=file://
 upload.path=/projects/itbar/uploads
 server.uri=itbar.ml
 

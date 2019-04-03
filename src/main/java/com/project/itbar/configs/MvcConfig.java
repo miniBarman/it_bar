@@ -10,6 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
     @Value("${upload.path}")
     private String uploadPath;
+    @Value("${upload.protocol}")
+    private String uploadProtocol;
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/main").setViewName("main");
@@ -20,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**")
-                .addResourceLocations("file:///"+uploadPath+"/img/");
+                .addResourceLocations(uploadProtocol+uploadPath+"/img/");
 //        registry.addResourceHandler("/static/**")
 //                .addResourceLocations("classpath:/static/");
     }
