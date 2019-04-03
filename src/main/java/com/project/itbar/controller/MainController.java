@@ -36,14 +36,16 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
 
-    //just redirection from / to /main
-    //maybe we can use something more smooth???
     @GetMapping("/")
     public String main(Model model) {
         return "redirect:/main";
     }
 
-    //same problem WA for login button
+    @GetMapping("/help")
+    public String help(Model model) {
+        return "/help";
+    }
+
     @GetMapping("/main_login")
     public String mainLogin(Model model) {
         return "redirect:/main";

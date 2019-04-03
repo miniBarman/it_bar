@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/ingredients">Ингредиенты</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/help">Помощь</a>
+            </li>
         </ul>
 
         <#if user??>
@@ -36,7 +39,7 @@
         <#else>
 
         <form action="/main_login" method="get">
-            <button type="submit" class="btn btn-light">Log In</button>
+            <button type="submit" class="btn btn-light">Авторизоваться</button>
         </form>
 
         </#if>
