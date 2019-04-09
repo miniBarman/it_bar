@@ -14,6 +14,15 @@ public class CoctailIngredient {
     float volume;
     String unit;
 
+    public CoctailIngredient() {
+    }
+
+    public CoctailIngredient(Coctail coctail, Ingredient ingredient, float volume, String unit) {
+        this.coctailIngredientPK = new CoctailIngredientPK(coctail, ingredient);
+        this.volume = volume;
+        this.unit = unit;
+    }
+
     public CoctailIngredientPK getCoctailIngredientPK() {
         return coctailIngredientPK;
     }

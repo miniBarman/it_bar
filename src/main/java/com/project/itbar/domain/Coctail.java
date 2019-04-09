@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 public class Coctail {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(name = "coctailJpaSequence", sequenceName = "COCTAIL_JPA_SEQUENCE", allocationSize = 1, initialValue = 12)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "coctailJpaSequence")
     private BigInteger id;
 
     private String name;

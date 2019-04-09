@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -123,6 +124,7 @@ public class MainController {
     public String addCoctail(@AuthenticationPrincipal User user,
                       @RequestParam String name,
                       @RequestParam String description,
+                      @RequestParam String ingredients,
                       Map<String, Object> model,
                       @RequestParam("file") MultipartFile file) throws IOException {
 
@@ -142,6 +144,18 @@ public class MainController {
 
             coctail.setImage(resultFilename);
         }
+
+        List<CoctailIngredient> coctailIngredientList = new LinkedList<>();
+        for (String element : ingredients.split("/")) {
+            String[] elementParts = element.split(":");
+            Ingredient ingredient = ingredientRepo.findById(new BigInteger(elementParts[0])).get();
+            if (ingredient != null){
+                coctailIngredientList.add(new CoctailIngredient(coctail, ingredient, Float.parseFloat(elementParts[1]),elementParts[2]));
+            }
+        }
+
+        coctail.setCoctailIngredients(coctailIngredientList);
+
         coctailRepo.save(coctail);
         model.put("message", "Коктейль " + name + " был успешно добавлен");
 
