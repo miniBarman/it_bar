@@ -12,6 +12,9 @@
     <style>
         .card{
             overflow: hidden;
+            max-width: 205px;
+            min-width: 200px;
+            width: 205px;
            }
 
         .card-text{

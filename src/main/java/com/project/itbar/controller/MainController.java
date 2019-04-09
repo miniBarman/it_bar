@@ -189,13 +189,12 @@ public class MainController {
             model.addAttribute("ingredients", ingredients);
         }
 
-        Map<String, Iterable<Ingredient>> ingredientsByGroups = new HashMap<>();
+        Map<String, Iterable<Ingredient>> ingredientsByGroups = new LinkedHashMap<>();
         for (IngredientGroup group : IngredientGroup.values()) {
             Iterable<Ingredient> ingredientsByGroup = ingredientRepo.findByIngredientGroup(group);
             if (ingredientsByGroup != null)
                 ingredientsByGroups.put(Constants.INGREDIENT_GROUP_MAPPING.get(group.name()), ingredientsByGroup);
         }
-        System.out.println(ingredientsByGroups);
 
         model.addAttribute("ingredientsByGroups", ingredientsByGroups);
         model.addAttribute("allIngredients", ingredientRepo.findAll());
