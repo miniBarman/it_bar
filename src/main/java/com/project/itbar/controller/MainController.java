@@ -127,7 +127,7 @@ public class MainController {
                       @RequestParam String name,
                       @RequestParam String description,
                       @RequestParam String ingredients,
-                      Map<String, Object> model,
+                      RedirectAttributes redirectAttributes,
                       @RequestParam("file") MultipartFile file) throws IOException {
 
         Coctail coctail = new Coctail(name, description, user);
@@ -159,17 +159,13 @@ public class MainController {
         coctail.setCoctailIngredients(coctailIngredientList);
 
         coctailRepo.save(coctail);
-        model.put("message", "Коктейль " + name + " был успешно добавлен");
+        redirectAttributes.addFlashAttribute("message", "Коктейль " + name + " был успешно добавлен");
 
-        return "add_coctail";
+        return "redirect:/add_coctail";
     }
 
     @GetMapping("/add_ingredient")
-    public String addIngredient(@RequestParam(required = false, defaultValue = "") String message, Model model){
-        System.out.println("test get " + message);
-        if (!message.isEmpty()){
-            model.addAttribute("message", message);
-        }
+    public String addIngredient(Model model){
         model.addAttribute("ingredientGroups",
                 Arrays.stream(IngredientGroup.values()).map(IngredientGroup::name).map(Constants.INGREDIENT_GROUP_MAPPING::get).collect(Collectors.toList()));
         return "/add_ingredient";
@@ -209,8 +205,7 @@ public class MainController {
         }
         ingredientRepo.save(ingredient);
 
-        redirectAttributes.addAttribute("message", "Ингредиент " + name + " был успешно добавлен");
-
+        redirectAttributes.addFlashAttribute("message", "Ингредиент " + name + " был успешно добавлен");
         return "redirect:/add_ingredient";
     }
 
