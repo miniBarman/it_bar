@@ -2,8 +2,15 @@
 
 <@c.page>
 
+<#if message??>
+    <div class="alert alert-success" role="alert">
+        ${message}
+    </div>
+</#if>
+
 <h2>Добавление нового коктейля</h2>
 <br>
+
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
 
@@ -23,5 +30,5 @@
 
     <button type="submit" class="btn btn-primary mt-3">Добавить</button>
 </form>
-${message?ifExists}
+
 </@c.page>
