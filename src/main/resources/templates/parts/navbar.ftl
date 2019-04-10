@@ -39,7 +39,7 @@
         <#else>
 
         <form action="/main_login" method="get">
-            <button type="submit" class="btn btn-light">Авторизоваться</button>
+            <button type="submit" class="btn btn-light">Войти</button>
         </form>
 
         </#if>

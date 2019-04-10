@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -163,18 +165,33 @@ public class MainController {
     }
 
     @GetMapping("/add_ingredient")
-    public String addIngredient(Model model){
-        return "add_ingredient";
+    public String addIngredient(@RequestParam(required = false, defaultValue = "") String message, Model model){
+        System.out.println("test get " + message);
+        if (!message.isEmpty()){
+            model.addAttribute("message", message);
+        }
+        model.addAttribute("ingredientGroups",
+                Arrays.stream(IngredientGroup.values()).map(IngredientGroup::name).map(Constants.INGREDIENT_GROUP_MAPPING::get).collect(Collectors.toList()));
+        return "/add_ingredient";
     }
 
     @PostMapping("/add_ingredient")
     public String addIngredient(@AuthenticationPrincipal User user,
                              @RequestParam String name,
                              @RequestParam String description,
-                             Map<String, Object> model,
+                             @RequestParam String groupName,
+                             RedirectAttributes redirectAttributes,
                              @RequestParam("file") MultipartFile file) throws IOException {
 
-        Ingredient ingredient = new Ingredient(name, description, user);
+        System.out.println("test post");
+
+        String ingredientGroup = Constants.INGREDIENT_GROUP_MAPPING.entrySet().stream()
+                .filter(e -> e.getValue().equals(groupName))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
+
+        Ingredient ingredient = new Ingredient(name, description, ingredientGroup, user);
 
         if(file != null  && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
@@ -191,9 +208,10 @@ public class MainController {
             ingredient.setImage(resultFilename);
         }
         ingredientRepo.save(ingredient);
-        model.put("message", "Ингредиент " + name + " был успешно добавлен");
 
-        return "add_ingredient";
+        redirectAttributes.addAttribute("message", "Ингредиент " + name + " был успешно добавлен");
+
+        return "redirect:/add_ingredient";
     }
 
     @GetMapping("/ingredients")

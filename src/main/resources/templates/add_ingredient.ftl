@@ -15,6 +15,14 @@
         <label for="ingredientDescription">Описание ингредиента</label>
         <textarea class="form-control" type="text" name="description" id="ingredientDescription" rows="4" placeholder="Описание"></textarea>
     </div>
+    <div class="form-group">
+        <label for="ingredientGroup">Группа</label>
+        <select class="form-control" id="ingredientGroup" name="groupName">
+            <#list ingredientGroups as group>
+                <option>${group}</option>
+            </#list>
+        </select>
+    </div>
     <div class="custom-file">
         <input type="file" class="custom-file-input" id="ingredientPic" name="file">
         <label class="custom-file-label" for="ingredientPic">Изображение ингредиента</label>
@@ -22,5 +30,5 @@
 
     <button type="submit" class="btn btn-primary mt-3">Добавить</button>
 </form>
-${message?ifExists}
+${message!}
 </@c.page>

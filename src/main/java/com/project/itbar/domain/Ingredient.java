@@ -11,7 +11,8 @@ import java.util.Set;
 @Entity
 public class Ingredient {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @SequenceGenerator(name = "ingredientJpaSequence", sequenceName = "INGREDIENT_JPA_SEQUENCE", allocationSize = 1, initialValue = 265)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredientJpaSequence")
     private BigInteger id;
 
     private String name;
@@ -37,10 +38,11 @@ public class Ingredient {
         this.description = description;
     }
 
-    public Ingredient(String name, String description, User user) {
+    public Ingredient(String name, String description, String groupName, User user) {
         this.author = user;
         this.name = name;
         this.description = description;
+        this.ingredientGroup = IngredientGroup.valueOf(groupName);
     }
 
     public String getImgAddress(){return image != null ? image : "no_img.png"; }
