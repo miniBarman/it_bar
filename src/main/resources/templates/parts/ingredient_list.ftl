@@ -5,7 +5,7 @@
 				A:link {color: black;}
 				A:hover {color: blue;}
 		</style>
-        <div class="card text-center mb-4 mr-1 ml-1">
+        <div class="card <#if ingredient.author.id == user.id>border-warning</#if> text-center mb-4 mr-1 ml-1">
             <img src="/img/initial_data/ico/ingredient_ico.jpg" class="card-img-top" alt="Изображение ${ingredient.name}">
             <div class="card-body">
                 <h6 class="card-text" white-space="normal">${ingredient.name}</h6>

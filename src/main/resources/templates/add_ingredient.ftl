@@ -10,7 +10,7 @@
 
     <div class="form-group">
         <label for="ingredientName">Название ингредиента</label>
-        <input type="name" name="name" class="form-control" id="ingredientName" placeholder="Название">
+        <input type="name" name="name" class="form-control" id="ingredientName" placeholder="Название" required>
     </div>
     <div class="form-group">
         <label for="ingredientDescription">Описание ингредиента</label>

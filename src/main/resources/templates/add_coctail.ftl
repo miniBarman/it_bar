@@ -10,7 +10,7 @@
 
     <div class="form-group">
         <label for="coctailName">Название коктейля</label>
-        <input type="name" name="name" class="form-control" id="coctailName" placeholder="Название">
+        <input type="name" name="name" class="form-control" id="coctailName" placeholder="Название" required>
     </div>
     <div class="form-group">
         <label for="coctailDescription">Описание коктейля</label>
