@@ -2,12 +2,6 @@
 
 <@c.page>
 
-<#if message??>
-    <div class="alert alert-success" role="alert">
-        ${message}
-    </div>
-</#if>
-
 <h2>Добавление нового коктейля</h2>
 <br>
 

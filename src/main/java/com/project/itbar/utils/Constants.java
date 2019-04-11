@@ -21,4 +21,13 @@ public class Constants {
         put("SAUCE_OIL", "Соусы и масла");
         put("ICE", "Лёд");
     }});
+
+    public enum MessageType {
+        INFO,
+        SUCCESS,
+        ERROR;
+
+        MessageType() {
+        }
+    }
 }

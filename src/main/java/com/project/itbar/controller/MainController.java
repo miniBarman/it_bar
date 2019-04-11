@@ -6,6 +6,7 @@ import com.project.itbar.repos.CoctailRepo;
 import com.project.itbar.repos.IngredientRepo;
 import com.project.itbar.repos.UserRepo;
 import com.project.itbar.utils.Constants;
+import com.project.itbar.utils.SystemMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -159,7 +160,7 @@ public class MainController {
         coctail.setCoctailIngredients(coctailIngredientList);
 
         coctailRepo.save(coctail);
-        redirectAttributes.addFlashAttribute("message", "Коктейль " + name + " был успешно добавлен");
+        redirectAttributes.addFlashAttribute("message", new SystemMessage(Constants.MessageType.SUCCESS, "Коктейль " + name + " был успешно добавлен"));
 
         return "redirect:/add_coctail";
     }
@@ -205,7 +206,7 @@ public class MainController {
         }
         ingredientRepo.save(ingredient);
 
-        redirectAttributes.addFlashAttribute("message", "Ингредиент " + name + " был успешно добавлен");
+        redirectAttributes.addFlashAttribute("message", new SystemMessage(Constants.MessageType.SUCCESS, "Ингредиент " + name + " был успешно добавлен"));
         return "redirect:/add_ingredient";
     }
 

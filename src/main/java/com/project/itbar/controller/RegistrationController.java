@@ -2,13 +2,14 @@ package com.project.itbar.controller;
 
 import com.project.itbar.domain.User;
 import com.project.itbar.service.UserSevice;
+import com.project.itbar.utils.Constants;
+import com.project.itbar.utils.SystemMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -25,11 +26,12 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
         if (!userSevice.addUser(user)) {
-            model.addAttribute("message", "Такой пользователь уже существует!");
+            model.addAttribute("message", new SystemMessage(Constants.MessageType.ERROR, "Такой пользователь уже существует!"));
             return "registration";
         }else{
             if (user.getEmail() != null) {
-                model.addAttribute("message", "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для подтверждения");
+                model.addAttribute("message", new SystemMessage(Constants.MessageType.INFO,
+                        "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для подтверждения"));
             }
             return "login-view";
         }
@@ -41,9 +43,9 @@ public class RegistrationController {
         boolean isActivated = userSevice.activateUser(code);
 
         if(isActivated){
-            model.addAttribute("message", "Почта успешно подтверждена");
+            model.addAttribute("message", new SystemMessage(Constants.MessageType.SUCCESS, "Почта успешно подтверждена"));
         }else {
-            model.addAttribute("message", "Подтверждение почты не удалось. Активационный код не найден.");
+            model.addAttribute("message", new SystemMessage(Constants.MessageType.ERROR, "Подтверждение почты не удалось. Активационный код не найден"));
         }
         return "login";
     }

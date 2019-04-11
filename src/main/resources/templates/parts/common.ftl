@@ -25,6 +25,7 @@
 <body>
 <#include "navbar.ftl">
 <div class="container mt-5">
+    <#include "system_message.ftl">
     <#nested>
 </div>
 <!-- Optional JavaScript -->
