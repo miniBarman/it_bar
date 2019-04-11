@@ -71,7 +71,7 @@ public class MainController {
         Iterable<Coctail> coctails;
 
         if (filter != null && !filter.isEmpty()) {
-            coctails = user != null ? coctailRepo.findByAuthorInAndNameIgnoreCase(users, filter) : coctailRepo.findByAuthorAndNameIgnoreCase(systemUser, filter);
+            coctails = user != null ? coctailRepo.findByAuthorInAndNameContainingIgnoreCase(users, filter) : coctailRepo.findByAuthorAndNameContainingIgnoreCase(systemUser, filter);
         } else {
             coctails = allCoctails;
         }
@@ -236,12 +236,13 @@ public class MainController {
 
         Map<String, Iterable<Ingredient>> ingredientsByGroups = new LinkedHashMap<>();
 
+        //TODO: probably should be refactored
         for (IngredientGroup group : IngredientGroup.values()) {
             List<Ingredient> ingredientsByGroup = new LinkedList();
 
             if (filter != null && !filter.isEmpty()) {
-                ingredientsByGroup = user != null ? ingredientRepo.findByAuthorInAndIngredientGroupAndNameIgnoreCase(users, group, filter)
-                        : ingredientRepo.findByAuthorAndIngredientGroupAndNameIgnoreCase(systemUser, group, filter);
+                ingredientsByGroup = user != null ? ingredientRepo.findByAuthorInAndIngredientGroupAndNameContainingIgnoreCase(users, group, filter)
+                        : ingredientRepo.findByAuthorAndIngredientGroupAndNameContainingIgnoreCase(systemUser, group, filter);
             } else {
                 ingredientsByGroup = user != null ? ingredientRepo.findByAuthorInAndIngredientGroup(users, group)
                         : ingredientRepo.findByAuthorAndIngredientGroup(systemUser, group);

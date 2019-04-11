@@ -16,7 +16,7 @@ public interface CoctailRepo extends CrudRepository<Coctail, BigInteger> {
 
     List<Coctail> findByAuthor(User user);
 
-    List<Coctail> findByAuthorAndNameIgnoreCase(User user, String name);
+    List<Coctail> findByAuthorAndNameContainingIgnoreCase(User user, String name);
 
-    List<Coctail> findByAuthorInAndNameIgnoreCase(Collection<User> users, String filter);
+    List<Coctail> findByAuthorInAndNameContainingIgnoreCase(Collection<User> users, String filter);
 }

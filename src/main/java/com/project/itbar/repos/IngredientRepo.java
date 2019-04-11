@@ -20,15 +20,15 @@ public interface IngredientRepo extends CrudRepository<Ingredient, BigInteger> {
 
     List<Ingredient> findByAuthorIn(Collection<User> users);
 
-    List<Ingredient> findByAuthorAndNameIgnoreCase(User user, String name);
+    List<Ingredient> findByAuthorAndNameContainingIgnoreCase(User user, String name);
 
-    List<Ingredient> findByAuthorInAndNameIgnoreCase(Collection<User> users, String filter);
+    List<Ingredient> findByAuthorInAndNameContainingIgnoreCase(Collection<User> users, String filter);
 
     List<Ingredient> findByAuthorInAndIngredientGroup(Collection<User> users, IngredientGroup group);
 
     List<Ingredient> findByAuthorAndIngredientGroup(User user, IngredientGroup group);
 
-    List<Ingredient> findByAuthorInAndIngredientGroupAndNameIgnoreCase(Collection<User> users, IngredientGroup group, String filter);
+    List<Ingredient> findByAuthorInAndIngredientGroupAndNameContainingIgnoreCase(Collection<User> users, IngredientGroup group, String filter);
 
-    List<Ingredient> findByAuthorAndIngredientGroupAndNameIgnoreCase(User systemUser, IngredientGroup group, String filter);
+    List<Ingredient> findByAuthorAndIngredientGroupAndNameContainingIgnoreCase(User systemUser, IngredientGroup group, String filter);
 }
