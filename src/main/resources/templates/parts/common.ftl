@@ -49,7 +49,7 @@
 <#if coctails??>
 <script type="text/javascript">
     $( function() {
-        var availableCoctailList = [<#list coctails as coctail>"${coctail.name}"<#sep>, </#list>];
+        var availableCoctailList = [<#list allCoctails as coctail>"${coctail.name}"<#sep>, </#list>];
         $( "#coctailList" ).autocomplete({
             source: availableCoctailList
         });

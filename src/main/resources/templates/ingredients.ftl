@@ -5,7 +5,7 @@
 
 <form class="input-group mb-3" method="get" action="/ingredients">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <input id="ingredientList" type="name" name="filter" class="form-control" placeholder="Название" value="${filter?ifExists}" aria-describedby="button-addon2">
+    <input id="ingredientList" type="name" name="filter" class="form-control" placeholder="Название" value="${filter!}" aria-describedby="button-addon2">
     <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Найти</button>
     </div>

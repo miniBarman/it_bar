@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class MainController {
@@ -56,16 +57,28 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(@AuthenticationPrincipal User user,
+                       @RequestParam(required = false, defaultValue = "") String filter,
+                       Model model) {
+        User systemUser = userRepo.findByUsername("system");
+        Collection<User> users = new LinkedList<>();
+
+        if(user != null){
+            users = Stream.of(user, systemUser).collect(Collectors.toList());
+        }
+
+        Iterable<Coctail> allCoctails = user != null ? coctailRepo.findByAuthorIn(users) : coctailRepo.findByAuthor(systemUser);
         Iterable<Coctail> coctails;
 
         if (filter != null && !filter.isEmpty()) {
-            coctails = coctailRepo.findByName(filter);
+            coctails = user != null ? coctailRepo.findByAuthorInAndNameIgnoreCase(users, filter) : coctailRepo.findByAuthorAndNameIgnoreCase(systemUser, filter);
         } else {
-            coctails = coctailRepo.findAll();
+            coctails = allCoctails;
         }
 
+
         model.addAttribute("coctails", coctails);
+        model.addAttribute("allCoctails", allCoctails);
         model.addAttribute("filter", filter);
 
         return "main";
@@ -211,21 +224,36 @@ public class MainController {
     }
 
     @GetMapping("/ingredients")
-    public String getIngredients(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        if (filter != null && !filter.isEmpty()) {
-            Iterable<Ingredient> ingredients = ingredientRepo.findByName(filter);
-            model.addAttribute("ingredients", ingredients);
+    public String getIngredients(@AuthenticationPrincipal User user,
+                                 @RequestParam(required = false, defaultValue = "") String filter,
+                                 Model model) {
+        User systemUser = userRepo.findByUsername("system");
+        Collection<User> users = new LinkedList<>();
+
+        if(user != null){
+            users = Stream.of(user, systemUser).collect(Collectors.toList());
         }
 
         Map<String, Iterable<Ingredient>> ingredientsByGroups = new LinkedHashMap<>();
+
         for (IngredientGroup group : IngredientGroup.values()) {
-            Iterable<Ingredient> ingredientsByGroup = ingredientRepo.findByIngredientGroup(group);
-            if (ingredientsByGroup != null)
+            List<Ingredient> ingredientsByGroup = new LinkedList();
+
+            if (filter != null && !filter.isEmpty()) {
+                ingredientsByGroup = user != null ? ingredientRepo.findByAuthorInAndIngredientGroupAndNameIgnoreCase(users, group, filter)
+                        : ingredientRepo.findByAuthorAndIngredientGroupAndNameIgnoreCase(systemUser, group, filter);
+            } else {
+                ingredientsByGroup = user != null ? ingredientRepo.findByAuthorInAndIngredientGroup(users, group)
+                        : ingredientRepo.findByAuthorAndIngredientGroup(systemUser, group);
+            }
+
+            if (ingredientsByGroup != null && !ingredientsByGroup.isEmpty())
                 ingredientsByGroups.put(Constants.INGREDIENT_GROUP_MAPPING.get(group.name()), ingredientsByGroup);
         }
 
         model.addAttribute("ingredientsByGroups", ingredientsByGroups);
-        model.addAttribute("allIngredients", ingredientRepo.findAll());
+        model.addAttribute("allIngredients", user != null ? ingredientRepo.findByAuthorIn(users)
+                : ingredientRepo.findByAuthor(systemUser));
         model.addAttribute("filter", filter);
 
         return "ingredients";
