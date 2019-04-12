@@ -68,12 +68,14 @@ $(".custom-file-input").on("change", function() {
 <script>
 	function add_ingredient() {
 	    var i = $("[id *= 'ingredientList']").length;
-		$("#ingredient_add").replaceWith("<input class='btn btn-danger btn-block' type='button' value='-' onclick='delete_ingredient(" + i + ")'>");
-		$("<div class='row' id='ingredient_row[" + i + "]'><div class='col-4'><input type='text' id='ingredientList" + i + "' class='form-control' placeholder='Ингредиент'></div><div class='col-1'><input type='text' class='form-control' placeholder='100'></div><div class='col-1'><input type='text' class='form-control'></div><div class='col-1'><input class='btn btn-success btn-block' type='button' value='+' id='ingredient_add' onclick='add_ingredient()'></div></div>").appendTo(".ingredient_list");
+	    var delete_btn_id = i-1;
+		$("#ingredient_add").replaceWith("<input class='btn btn-danger btn-block' type='button' value='-' onclick='delete_ingredient(" + delete_btn_id + ")'>");
+		$("<div class='row' id='ingredient_row" + i + "'><div class='col-4'><input type='text' id='ingredientList" + i + "' class='form-control' placeholder='Ингредиент'></div><div class='col-1'><input type='text' class='form-control' placeholder='100'></div><div class='col-1'><input type='text' class='form-control'></div><div class='col-1'><input class='btn btn-success btn-block' type='button' value='+' id='ingredient_add' onclick='add_ingredient()'></div></div>").appendTo(".ingredient_list");
 		bindAutoComplete('form-control');
 	};
 	function delete_ingredient(id){
-	    $("#ingredient_row["+id+"]").remove();
+	    alert("#ingredient_row"+id);
+	    $("#ingredient_row"+id).remove();
 	};
 	function bindAutoComplete(classname){
 	    var availableIngredientList = [<#list allIngredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
