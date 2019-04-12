@@ -132,7 +132,10 @@ public class MainController {
     }
 
     @GetMapping("/add_coctail")
-    public String addCoctail(Model model){
+    public String addCoctail(@AuthenticationPrincipal User user, Model model){
+        User systemUser = userRepo.findByUsername("system");
+        Collection<User> users = Stream.of(user, systemUser).collect(Collectors.toList());;
+        model.addAttribute("allIngredients", ingredientRepo.findByAuthorIn(users));
         return "add_coctail";
     }
 

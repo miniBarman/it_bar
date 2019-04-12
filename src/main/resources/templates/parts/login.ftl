@@ -24,14 +24,14 @@
         </div>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-    <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+    <#if !isRegisterForm><a class="btn btn-primary" href="/registration">Новый Пользователь</a></#if>
+    <button class="btn btn-success" type="submit"><#if isRegisterForm>Create<#else>Войти</#if></button>
 </form>
 </#macro>
 
 <#macro logout>
 <form action="/logout" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <button type="submit" class="btn btn-light">Sign Out</button>
+    <button type="submit" class="btn btn-light">Выйти</button>
 </form>
 </#macro>
