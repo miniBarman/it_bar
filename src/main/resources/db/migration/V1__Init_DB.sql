@@ -1,5 +1,5 @@
 create sequence hibernate_sequence start 1 increment 1;
-create sequence user_jpa_sequence start 2 increment 1;
+create sequence user_jpa_sequence start 3 increment 1;
 create sequence coctail_jpa_sequence start 12 increment 1;
 create sequence ingredient_jpa_sequence start 265 increment 1;
 

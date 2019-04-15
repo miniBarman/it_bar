@@ -27,7 +27,7 @@
     <div class="ingredient_list">
         <div class="row" id="ingredient_row0">
             <div class="col-4">
-                <input type="text" id="ingredientList[0]" name="ingredients" class="form-control" placeholder="Ингредиент" required>
+                <input type="text" id="ingredientList" name="ingredients" class="form-control" placeholder="Ингредиент" required>
             </div>
             <div class="col-1">
                 <input type="text" class="form-control" name="volumes" placeholder="100" required>

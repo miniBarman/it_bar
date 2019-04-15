@@ -70,7 +70,7 @@ $(".custom-file-input").on("change", function() {
 	    var delete_btn_id = $(".ingredient_list").children().last().attr('id').slice(14);
 	    var i = Number(delete_btn_id)+1;
 		$("#ingredient_add").replaceWith("<input class='btn btn-danger btn-block' type='button' value='-' onclick='delete_ingredient(" + delete_btn_id + ")'>");
-		$(".ingredient_list").append("<div class='row' id='ingredient_row" + i + "'><div class='col-4'><input type='text' id='ingredientList[" + i + "]' name='ingredients' class='form-control' placeholder='Ингредиент' required></div><div class='col-1'><input type='text' class='form-control' name='volumes' placeholder='100' required></div><div class='col-2'><select class='form-control' name='units' required><#list unitList as unit><option>${unit}</option></#list></select></div><div class='col-1'><input class='btn btn-success btn-block' type='button' value='+' id='ingredient_add' onclick='add_ingredient()'></div></div>");
+		$(".ingredient_list").append("<div class='row' id='ingredient_row" + i + "'><div class='col-4'><input type='text' id='ingredientList" + i + "' name='ingredients' class='form-control' placeholder='Ингредиент' required></div><div class='col-1'><input type='text' class='form-control' name='volumes' placeholder='100' required></div><div class='col-2'><select class='form-control' name='units' required><#list unitList as unit><option>${unit}</option></#list></select></div><div class='col-1'><input class='btn btn-success btn-block' type='button' value='+' id='ingredient_add' onclick='add_ingredient()'></div></div>");
 		bindAutoComplete();
 	};
 	function delete_ingredient(id){

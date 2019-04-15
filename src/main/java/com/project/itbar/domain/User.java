@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Table(name = "usr")
 public class User implements UserDetails {
     @Id
-    @SequenceGenerator(name = "userJpaSequence", sequenceName = "USER_JPA_SEQUENCE", allocationSize = 1, initialValue = 2)
+    @SequenceGenerator(name = "userJpaSequence", sequenceName = "USER_JPA_SEQUENCE", allocationSize = 1, initialValue = 3)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userJpaSequence")
     private BigInteger id;
     private String username;
