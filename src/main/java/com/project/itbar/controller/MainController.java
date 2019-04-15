@@ -136,6 +136,7 @@ public class MainController {
         User systemUser = userRepo.findByUsername("system");
         Collection<User> users = Stream.of(user, systemUser).collect(Collectors.toList());;
         model.addAttribute("allIngredients", ingredientRepo.findByAuthorIn(users));
+        model.addAttribute("unitList", Constants.UNIT_LIST);
         return "add_coctail";
     }
 
@@ -143,10 +144,14 @@ public class MainController {
     public String addCoctail(@AuthenticationPrincipal User user,
                       @RequestParam String name,
                       @RequestParam String description,
-                      @RequestParam String ingredients,
+                      @RequestParam List<String> ingredients,
+                      @RequestParam List<String> volumes,
+                      @RequestParam List<String> units,
                       RedirectAttributes redirectAttributes,
                       @RequestParam("file") MultipartFile file) throws IOException {
-
+        System.out.println("ingredients: " + ingredients);
+        System.out.println("volumes: " + volumes);
+        System.out.println("units: " + units);
         Coctail coctail = new Coctail(name, description, user);
 
         if(file != null  && !file.getOriginalFilename().isEmpty()){
@@ -165,11 +170,13 @@ public class MainController {
         }
 
         List<CoctailIngredient> coctailIngredientList = new LinkedList<>();
-        for (String element : ingredients.split("/")) {
-            String[] elementParts = element.split(":");
-            Ingredient ingredient = ingredientRepo.findById(new BigInteger(elementParts[0])).get();
+        for (int i = 0; i < ingredients.size(); i++) {
+            //TODO: check this field
+            Ingredient ingredient = ingredientRepo.findByName(ingredients.get(i)).get(0);
+            //TODO: check this field
+            float volume = Float.parseFloat(volumes.get(i));
             if (ingredient != null){
-                coctailIngredientList.add(new CoctailIngredient(coctail, ingredient, Float.parseFloat(elementParts[1]),elementParts[2]));
+                coctailIngredientList.add(new CoctailIngredient(coctail, ingredient, volume, units.get(i)));
             }
         }
 

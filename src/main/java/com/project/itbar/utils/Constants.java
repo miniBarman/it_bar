@@ -1,8 +1,6 @@
 package com.project.itbar.utils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Constants {
 
@@ -20,6 +18,12 @@ public class Constants {
         put("HERBS", "Травы и специи");
         put("SAUCE_OIL", "Соусы и масла");
         put("ICE", "Лёд");
+    }});
+
+    public static final List<String> UNIT_LIST = Collections.unmodifiableList(new LinkedList<String>(){{
+        add("мл");
+        add("гр");
+        add("шт");
     }});
 
     public enum MessageType {
