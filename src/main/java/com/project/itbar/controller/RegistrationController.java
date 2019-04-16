@@ -32,7 +32,7 @@ public class RegistrationController {
         }else{
             if (user.getEmail() != null) {
                 redirectAttributes.addFlashAttribute("message", new SystemMessage(Constants.MessageType.INFO,
-                        "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для подтверждения"));
+                        "Пожалуйста, пройдите по ссылке, которая была отправлена вам на почту для её подтверждения"));
             }
             return "redirect:/login";
         }

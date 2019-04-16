@@ -13,6 +13,10 @@
         <input type="name" name="name" class="form-control" id="coctailName" placeholder="Название" required>
     </div>
     <div class="form-group">
+        <label for="coctailRecipe">Рецепт коктейля</label>
+        <textarea class="form-control" type="text" name="recipe" id="coctailRecipe" rows="6" placeholder="Рецепт" required></textarea>
+    </div>
+    <div class="form-group">
         <label for="coctailDescription">Описание коктейля</label>
         <textarea class="form-control" type="text" name="description" id="coctailDescription" rows="4" placeholder="Описание"></textarea>
     </div>
@@ -20,6 +24,8 @@
         <input type="file" class="custom-file-input" id="coctailPic" name="file">
         <label class="custom-file-label" for="coctailPic">Изображение коктейля</label>
     </div>
+
+    <input id="coctail_labels" name="coctailLabels" type="text">
 
     <br><br>
     <h4 class="col-sm-2 col-form-label">Ингредиенты</h4>

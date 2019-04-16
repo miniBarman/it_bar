@@ -292,6 +292,8 @@ insert into ingredient values (262, 'Ледяной куб', 'ICE', 'initial_dat
 insert into ingredient values (263, 'Ледяная сфера', 'ICE', 'initial_data/ice-cubes.jpg', 'Гордость японских барменов – лед, возведенный в ранг предмета искусства. Сегодня все чаще появляется в барах благодаря специальным машинкам. В легко нагреваемые тиски помещают заготовленный ледяной куб, металл разогревают водой и обрезают лед по заранее заготовленному шарообразному контуру.', 1);
 insert into ingredient values (264, 'Сухой лед', 'ICE', 'initial_data/ice-cubes.jpg', 'Молекулярный ингредиент, в твердом состоянии состоит из двуокиси углерода. При разморозке и добавлении воды превращается в пар, минуя жидкую фазу.', 1);
 
+insert into label values(1, 'IBA');
+
 insert into coctail values (1, 'Мохито', 'initial_data/mojito.png', 'Коктейль на основе светлого рома и листьев мяты. Происходит с острова Куба, стал популярен в США в 1980-х. Коктейль входит в список «современной классики» международной ассоциации барменов (IBA) и классифицируется как лонг дринк', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 1, 50, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 144, 15, 'мл');
@@ -299,12 +301,14 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 223, 80, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 236, 3, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 261, 200, 'гр');
+insert into coctail_labels values (1, 1);
 
 insert into coctail values (2, 'Дайкири', 'initial_data/daikiri.jpg', 'Алкогольный коктейль кубинского происхождения, основными компонентами которого являются светлый ром, сок лайма и сахар. Классифицируется как аперитив. Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые». Сходный по составу бразильский коктейль называется кайпиринья. Один из самых популярных в мире коктейлей.', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 1, 60, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 144, 15, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 195, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 260, 30, 'гр');
+insert into coctail_labels values (2, 1);
 
 insert into coctail values (3, 'Голубая Лагуна', 'initial_data/blue_laguna.png', 'Свою историю существования коктейль «Голубая лагуна» начал благодаря американскому бармену Энди МакЭлхону. Свое необычайно теплое название коктейль приобрел в честь едва ли не известной киноленты за всю историю кинематографа – «Голубая лагуна». Однако очень часто встречаются мнения о том, что название напитка не имеет ничего общего с фильмом, а напрямую связано со сказочно прекрасным местом в Исландии, собственно, название которого и носит коктейль. Многие знатоки и любители коктейлей считают, что «Голубая лагуна» имеет «родственную» связь с легендарным коктейлем «Кровавая Мери».', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 10, 50, 'мл');
@@ -312,6 +316,7 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 210, 150, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 226, 30, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 260, 200, 'гр');
+insert into coctail_labels values (3, 1);
 
 insert into coctail values (4, 'Маргарита', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 6, 50, 'мл');
@@ -320,12 +325,14 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 195, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 223, 10, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 260, 200, 'гр');
+insert into coctail_labels values (4, 1);
 
 insert into coctail values (5, 'Белый русский', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 10, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 44, 30, 'мл');
 --insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 10, 50, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 260, 120, 'гр');
+insert into coctail_labels values (5, 1);
 
 insert into coctail values (6, 'Космополитен', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 11, 40, 'мл');
@@ -333,6 +340,7 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 198, 50, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 195, 10, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 260, 120, 'гр');
+insert into coctail_labels values (6, 1);
 
 insert into coctail values (7, 'Лонг айленд айс ти', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 10, 30, 'мл');
@@ -344,6 +352,7 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 194, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 215, 100, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 260, 300, 'гр');
+insert into coctail_labels values (7, 1);
 
 insert into coctail values (8, 'Негрони', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 5, 30, 'мл');
@@ -351,6 +360,7 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 91, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 221, 30, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 260, 120, 'гр');
+insert into coctail_labels values (8, 1);
 
 insert into coctail values (9, 'Май тай', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 2, 50, 'мл');
@@ -362,12 +372,14 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 236, 1, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 261, 150, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 260, 200, 'гр');
+insert into coctail_labels values (9, 1);
 
 insert into coctail values (10, 'Манхэттен', 'initial_data/blue_laguna.png', 'Описания нет', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 16, 50, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 39, 25, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 123, 1, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 260, 300, 'гр');
+insert into coctail_labels values (10, 1);
 
 insert into coctail values (11, 'Виски сауэр', 'initial_data/blue_laguna.png', '', 1);
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 16, 50, 'мл');
@@ -376,3 +388,4 @@ insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values 
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 194, 30, 'мл');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 222, 20, 'гр');
 insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 260, 300, 'гр');
+insert into coctail_labels values (11, 1);

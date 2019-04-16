@@ -1,10 +1,7 @@
 package com.project.itbar.controller;
 
 import com.project.itbar.domain.*;
-import com.project.itbar.repos.CoctailIngredientRepo;
-import com.project.itbar.repos.CoctailRepo;
-import com.project.itbar.repos.IngredientRepo;
-import com.project.itbar.repos.UserRepo;
+import com.project.itbar.repos.*;
 import com.project.itbar.utils.Constants;
 import com.project.itbar.utils.SystemMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,8 @@ public class MainController {
     private CoctailIngredientRepo coctailIngredientRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private LabelRepo labelRepo;
 
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
@@ -137,6 +136,7 @@ public class MainController {
         Collection<User> users = Stream.of(user, systemUser).collect(Collectors.toList());;
         model.addAttribute("allIngredients", ingredientRepo.findByAuthorIn(users));
         model.addAttribute("unitList", Constants.UNIT_LIST);
+        model.addAttribute("coctailLabels", labelRepo.findAll());
         return "add_coctail";
     }
 
@@ -144,15 +144,14 @@ public class MainController {
     public String addCoctail(@AuthenticationPrincipal User user,
                       @RequestParam String name,
                       @RequestParam String description,
+                      @RequestParam String recipe,
+                      @RequestParam String coctailLabels,
                       @RequestParam List<String> ingredients,
                       @RequestParam List<String> volumes,
                       @RequestParam List<String> units,
                       RedirectAttributes redirectAttributes,
                       @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println("ingredients: " + ingredients);
-        System.out.println("volumes: " + volumes);
-        System.out.println("units: " + units);
-        Coctail coctail = new Coctail(name, description, user);
+        Coctail coctail = new Coctail(name, recipe, description, user);
 
         if(file != null  && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
@@ -181,6 +180,22 @@ public class MainController {
         }
 
         coctail.setCoctailIngredients(coctailIngredientList);
+
+        if (coctailLabels != null && !coctailLabels.isEmpty()) {
+            List<Label> coctailLabelsList = new LinkedList<>();
+            for (String labelName : coctailLabels.split(",")) {
+                List<Label> labelList = labelRepo.findByName(labelName);
+                if (!labelList.isEmpty()) {
+                    coctailLabelsList.add(labelList.get(0));
+                } else {
+                    Label label = new Label(labelName);
+                    labelRepo.save(label);
+                    coctailLabelsList.add(label);
+                }
+            }
+
+            coctail.setLabels(coctailLabelsList);
+        }
 
         coctailRepo.save(coctail);
         redirectAttributes.addFlashAttribute("message", new SystemMessage(Constants.MessageType.SUCCESS, "Коктейль " + name + " был успешно добавлен"));

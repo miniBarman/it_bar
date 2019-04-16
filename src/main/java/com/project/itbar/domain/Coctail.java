@@ -12,6 +12,7 @@ public class Coctail {
     private BigInteger id;
 
     private String name;
+    private String recipe;
     private String description;
     private String image;
 
@@ -23,16 +24,16 @@ public class Coctail {
     @JoinColumn(name="coctail_id")
     private List<CoctailIngredient> coctailIngredients;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="label_id")
+    private List<Label> labels;
+
     public Coctail() {
     }
 
-    public Coctail(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Coctail(String name, String description, User user) {
+    public Coctail(String name, String recipe, String description, User user) {
         this.author = user;
+        this.recipe = recipe;
         this.name = name;
         this.description = description;
     }
@@ -89,5 +90,21 @@ public class Coctail {
 
     public void setCoctailIngredients(List<CoctailIngredient> coctailIngredients) {
         this.coctailIngredients = coctailIngredients;
+    }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
+
+    public String getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
     }
 }

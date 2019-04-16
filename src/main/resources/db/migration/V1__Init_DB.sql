@@ -2,6 +2,7 @@ create sequence hibernate_sequence start 1 increment 1;
 create sequence user_jpa_sequence start 3 increment 1;
 create sequence coctail_jpa_sequence start 12 increment 1;
 create sequence ingredient_jpa_sequence start 265 increment 1;
+create sequence label_jpa_sequence start 2 increment 1;
 
 create table coctail (
 	id numeric(19, 2) not null,
@@ -9,6 +10,7 @@ create table coctail (
 	image varchar(255),
 	description varchar(2048),
 	user_id numeric(19, 2),
+	recipe varchar(2048),
 	primary key (id)
 );
 
@@ -45,6 +47,17 @@ create table usr_bar_ingredients (
     bar_ingredients_id numeric(19, 2) not null
 );
 
+create table label (
+    id numeric(19, 2) not null,
+    name varchar(255),
+    primary key (id)
+);
+
+create table coctail_labels (
+    coctail_id numeric(19, 2) not null,
+    labels_id numeric(19, 2) not null
+);
+
 alter table if exists coctail
 add constraint coctail_user_fk
 foreign key (user_id)
@@ -74,3 +87,13 @@ alter table if exists usr_bar_ingredients
 add constraint usr_bar_ingredients_usr_fk
 foreign key (user_id)
 references usr;
+
+alter table if exists coctail_labels
+add constraint coctail_labels_label_fk
+foreign key (labels_id)
+references label;
+
+alter table if exists coctail_labels
+add constraint coctail_labels_coctail_fk
+foreign key (coctail_id)
+references coctail;

@@ -5,13 +5,18 @@
         <h5 class="mt-0"><i>${coctail.name}</i> by ${coctail.authorName}</h5>
         <p>${coctail.description}</p>
         <p class="mb-0">
+            <ul style="list-style-type:none; padding: 0;">
             <#list coctail.coctailIngredients as ingredient>
-        <p><a href="/ingredient/${ingredient.ingredient.id}"> ${ingredient.volume} ${ingredient.unit}  ${ingredient.ingredient.name}</a></p>
-        <#else>
-        No ingredients
-    </#list>
-    </p>
-</div>
+                <li><a href="/ingredient/${ingredient.ingredient.id}"> ${ingredient.volume} ${ingredient.unit}  ${ingredient.ingredient.name}</a></li>
+            <#else>
+                No ingredients
+            </#list>
+            </ul>
+        </p>
+        <#list coctail.labels as label>
+        <span class="badge badge-primary">${label.name}</span>
+        </#list>
+    </div>
 </div>
 <#else>
 No coctails
