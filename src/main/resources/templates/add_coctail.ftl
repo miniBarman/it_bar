@@ -5,15 +5,15 @@
 <h2>Создание нового коктейля</h2>
 <br>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" class="bootstrap-form needs-validation" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
 
     <div class="form-group">
-        <label for="coctailName">Название коктейля</label>
+        <label for="coctailName">Название коктейля<span class="required">*</span></label>
         <input type="name" name="name" class="form-control" id="coctailName" placeholder="Название" required>
     </div>
     <div class="form-group">
-        <label for="coctailRecipe">Рецепт коктейля</label>
+        <label for="coctailRecipe">Рецепт коктейля<span class="required">*</span></label>
         <textarea class="form-control" type="text" name="recipe" id="coctailRecipe" rows="6" placeholder="Рецепт" required></textarea>
     </div>
     <div class="form-group">
@@ -25,10 +25,11 @@
         <label class="custom-file-label" for="coctailPic">Изображение коктейля</label>
     </div>
 
-    <input id="coctail_labels" name="coctailLabels" type="text">
+    <div class="form-group mt-3">
+        <input id="coctail_labels" name="coctailLabels" type="text">
+    </div>
 
-    <br><br>
-    <h4 class="col-sm-2 col-form-label">Ингредиенты</h4>
+    <h4 class="col-sm-2 col-form-label">Ингредиенты<span class="required">*</span></h4>
 
     <div class="ingredient_list">
         <div class="row" id="ingredient_row0">

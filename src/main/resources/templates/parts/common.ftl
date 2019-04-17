@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="static/jquery.tagsinput-revisited.css">
     <style>
@@ -20,6 +20,9 @@
 
         .card-text{
             word-wrap: break-word;
+        }
+        .required{
+            color: red;
         }
     </style>
 </head>
@@ -38,6 +41,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="static/jquery.tagsinput-revisited.js"></script>
+<script src="static/validator.js"></script>
 
 <#if allIngredients??>
     <script type="text/javascript">
@@ -60,6 +64,7 @@
     });
     </script>
 </#if>
+
 <script>
 // Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {
@@ -68,8 +73,34 @@ $(".custom-file-input").on("change", function() {
 });
 </script>
 
-<#if allIngredients??>
+<#if viewName?? && viewName == "add_coctail">
 <script>
+    $( function() {
+        var availableIngredientList = [<#list allIngredients as ingredient>"${ingredient.name}"<#sep>, </#list>];
+        var previousValue = "";
+        var currentValue = "";
+        $( "#ingredientList" ).autocomplete({
+            source: availableIngredientList
+        }).blur(function() {
+            var isValid = false;
+            for (i in availableIngredientList) {
+                if (availableIngredientList[i].toLowerCase() == this.value.toLowerCase()) {
+                    currentValue = availableIngredientList[i];
+                    isValid = true;
+                }
+            }
+            if (!isValid) {
+                this.value = previousValue;
+                currentValue = "";
+                $(this).addClass('is-invalid');
+            } else {
+                previousValue = this.value;
+                this.value = currentValue;
+                $(this).addClass('is-valid');
+            }
+        });;
+    });
+
 	function add_ingredient() {
 	    var delete_btn_id = $(".ingredient_list").children().last().attr('id').slice(14);
 	    var i = Number(delete_btn_id)+1;

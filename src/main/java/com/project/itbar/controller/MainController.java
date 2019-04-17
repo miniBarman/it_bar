@@ -137,6 +137,7 @@ public class MainController {
         model.addAttribute("allIngredients", ingredientRepo.findByAuthorIn(users));
         model.addAttribute("unitList", Constants.UNIT_LIST);
         model.addAttribute("coctailLabels", labelRepo.findAll());
+        model.addAttribute("viewName", "add_coctail");
         return "add_coctail";
     }
 
