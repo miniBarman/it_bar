@@ -1,14 +1,14 @@
 <#macro login path isRegisterForm>
-<form action="${path}" method="post">
+<form action="${path}" method="post" class="bootstrap-form needs-validation" novalidate>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">User Name :</label>
+        <label class="col-sm-2 col-form-label">Логин:</label>
         <div class="col-sm-6">
             <input type="text" name="username" class="form-control" placeholder="User name" required/>
         </div>
     </div>
     <#if isRegisterForm>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Email :</label>
+        <label class="col-sm-2 col-form-label">E-mail:</label>
         <div class="col-sm-6">
             <input type="email" name="email" class="form-control" placeholder="email@email.com" aria-describedby="emailHelpBlock" required/>
             <small id="emailHelpBlock" class="form-text text-muted">
@@ -18,7 +18,7 @@
     </div>
     </#if>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Password:</label>
+        <label class="col-sm-2 col-form-label">Пароль:</label>
         <div class="col-sm-6">
             <input type="password" name="password" class="form-control" placeholder="Password" required/>
         </div>

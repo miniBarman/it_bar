@@ -5,11 +5,11 @@
 <h2>Добавление нового ингредиента</h2>
 <br>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" class="bootstrap-form needs-validation" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
 
     <div class="form-group">
-        <label for="ingredientName">Название ингредиента</label>
+        <label for="ingredientName">Название ингредиента<span class="required">*</span></label>
         <input type="name" name="name" class="form-control" id="ingredientName" placeholder="Название" required>
     </div>
     <div class="form-group">
@@ -17,7 +17,7 @@
         <textarea class="form-control" type="text" name="description" id="ingredientDescription" rows="4" placeholder="Описание"></textarea>
     </div>
     <div class="form-group">
-        <label for="ingredientGroup">Группа</label>
+        <label for="ingredientGroup">Группа<span class="required">*</span></label>
         <select class="form-control" id="ingredientGroup" name="groupName">
             <#list ingredientGroups as group>
                 <option>${group}</option>
