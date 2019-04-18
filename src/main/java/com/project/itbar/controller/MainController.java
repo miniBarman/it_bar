@@ -87,12 +87,18 @@ public class MainController {
     public String possibleCoctails(@AuthenticationPrincipal User user,
                                    @RequestParam(required = false, defaultValue = "") String filter,
                                    Model model) {
+        User systemUser = userRepo.findByUsername("system");
+        Collection<User> users = new LinkedList<>();
         Iterable<Coctail> coctails;
 
+        if(user != null){
+            users = Stream.of(user, systemUser).collect(Collectors.toList());
+        }
+
         if (filter != null && !filter.isEmpty()) {
-            coctails = coctailRepo.findByName(filter);
+            coctails = user != null ? coctailRepo.findByAuthorInAndNameContainingIgnoreCase(users, filter) : coctailRepo.findByAuthorAndNameContainingIgnoreCase(systemUser, filter);
         } else {
-            coctails = coctailRepo.findAll();
+            coctails = user != null ? coctailRepo.findByAuthorIn(users) : coctailRepo.findByAuthor(systemUser);
         }
 
         Map<Integer, Map<Coctail, List<Ingredient>>> cocteilsByExistenceInBar = sortByExistence(coctails, user.getBarIngredients());
