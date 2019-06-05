@@ -18,6 +18,7 @@ public class Constants {
         put("HERBS", "Травы и специи");
         put("SAUCE_OIL", "Соусы и масла");
         put("ICE", "Лёд");
+        put("OTHER", "Остальное");
     }});
 
     public static final List<String> UNIT_LIST = Collections.unmodifiableList(new LinkedList<String>(){{

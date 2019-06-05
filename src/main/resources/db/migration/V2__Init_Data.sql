@@ -285,107 +285,87 @@ insert into ingredient values (257, 'Соевый соус', 'SAUCE_OIL', 'initi
 insert into ingredient values (258, 'Шоколадный соус', 'SAUCE_OIL', 'initial_data/lime.jpg', 'Сладкий шоколадный соус производят из отборных какао-зерен с добавлением сахарного сиропа.',  1);
 insert into ingredient values (259, 'Карамельный соус', 'SAUCE_OIL', 'initial_data/lime.jpg', 'Сладкий соус производят из обезжиренного сгущенного молока с добавлением сахарного сиропа и карамельного ароматизатора.',  1);
 
-
 insert into ingredient values (260, 'Лед в кубиках', 'ICE', 'initial_data/ice-cubes.jpg', 'При производстве этого незаменимого ингредиента основное внимание уделяют чистоте воды и скорости заморозки. Чем медленнее замораживается вода, тем прозрачнее получается продукт. Идеальные образцы не имеют полостей и медленнее тают в бокале.', 1);
 insert into ingredient values (261, 'Дробленый лед', 'ICE', 'initial_data/ice-cubes.jpg', 'Первый «бритый» лед бармены срезали специальными ножами с больших ледяных плит. Позже появились дробильные машинки и ледогенераторы.', 1);
 insert into ingredient values (262, 'Ледяной куб', 'ICE', 'initial_data/ice-cubes.jpg', 'Большие кубы вернулись в бар с возвращением моды на классические напитки. При производстве сначала замораживают большие ледяные блоки, которые впоследствии разрезают пилой на ровные кубы. Лёд такой формы медленнее тает в бокале и не разбавляет напиток.', 1);
 insert into ingredient values (263, 'Ледяная сфера', 'ICE', 'initial_data/ice-cubes.jpg', 'Гордость японских барменов – лед, возведенный в ранг предмета искусства. Сегодня все чаще появляется в барах благодаря специальным машинкам. В легко нагреваемые тиски помещают заготовленный ледяной куб, металл разогревают водой и обрезают лед по заранее заготовленному шарообразному контуру.', 1);
 insert into ingredient values (264, 'Сухой лед', 'ICE', 'initial_data/ice-cubes.jpg', 'Молекулярный ингредиент, в твердом состоянии состоит из двуокиси углерода. При разморозке и добавлении воды превращается в пар, минуя жидкую фазу.', 1);
 
+insert into ingredient values (265, 'Бренди', 'STRONG_ALCOHOL', '', 'Бренди', 1);
+insert into ingredient values (266, 'Сливки', 'OTHER', '', 'Производят преимущественно из коровьего молока методом частичной сепарации – отделения сливок от молока. Хранится в холодильнике не более 20 дней.', 1);
+insert into ingredient values (267, 'Куантро', 'LIQUEUR', '', 'Куантро', 1);
+insert into ingredient values (268, 'Яичный белок', 'OTHER', '', 'Чтобы придать коктейлю с этим ингредиентом нежную и пенистую текстуру рекомендуется использовать метод приготовления «драй шейк».', 1);
+
 insert into label values(1, 'IBA');
+insert into label values(2, 'Незабываемый');
+insert into label values(3, 'Коктейль на весь день');
+insert into label values(4, 'Аперитив');
 
-insert into coctail values (1, 'Мохито', 'initial_data/mojito.png', 'Коктейль на основе светлого рома и листьев мяты. Происходит с острова Куба, стал популярен в США в 1980-х. Коктейль входит в список «современной классики» международной ассоциации барменов (IBA) и классифицируется как лонг дринк', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 1, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 144, 15, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 211, 100, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 223, 80, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 236, 3, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1, 261, 200, 'гр');
+insert into coctail values (1, 'Бренди Александр', '', 'Бренди Александр (Brandy Alexander, он же в некоторых источниках англ. Alexander №2 — «Адександр № 2» или «Милкшейк») — коктейль со сливками на основе коньяка (или бренди) и шоколадного ликёра. Классифицируется как коктейль на весь день (All day cocktail). Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые» (Unforgettables).', 1, 'В шейкер со льдом налейте все компоненты. Тщательно встряхните и вылейте в охлажденную коктейльную рюмку мартини. Сверху посыпьте коктейль тертым мускатным орехом.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1 , 265 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1 ,  59 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (1 , 266 ,  30, 'мл');
 insert into coctail_labels values (1, 1);
+insert into coctail_labels values (1, 2);
+insert into coctail_labels values (1, 3);
 
-insert into coctail values (2, 'Дайкири', 'initial_data/daikiri.jpg', 'Алкогольный коктейль кубинского происхождения, основными компонентами которого являются светлый ром, сок лайма и сахар. Классифицируется как аперитив. Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые». Сходный по составу бразильский коктейль называется кайпиринья. Один из самых популярных в мире коктейлей.', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 1, 60, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 144, 15, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 195, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2, 260, 30, 'гр');
+insert into coctail values (2, 'Американо', '', 'Коктейль-аперитив на основе красного вермута и кампари.', 1, 'В бокал олд фешн со льдом добавьте кампари и красный сладкий вермут, с верху долейте содовую. Перемешайте и украсьте цедрой лимона и долькой апельсина.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2 ,  91 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2 ,  39 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (2 , 211 , 100, 'мл');
 insert into coctail_labels values (2, 1);
+insert into coctail_labels values (2, 2);
 
-insert into coctail values (3, 'Голубая Лагуна', 'initial_data/blue_laguna.png', 'Свою историю существования коктейль «Голубая лагуна» начал благодаря американскому бармену Энди МакЭлхону. Свое необычайно теплое название коктейль приобрел в честь едва ли не известной киноленты за всю историю кинематографа – «Голубая лагуна». Однако очень часто встречаются мнения о том, что название напитка не имеет ничего общего с фильмом, а напрямую связано со сказочно прекрасным местом в Исландии, собственно, название которого и носит коктейль. Многие знатоки и любители коктейлей считают, что «Голубая лагуна» имеет «родственную» связь с легендарным коктейлем «Кровавая Мери».', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 10, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 40, 20, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 210, 150, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 226, 30, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3, 260, 200, 'гр');
+insert into coctail values (3, 'Лицо Ангела', '', '', 1, 'Вылейте все компоненты в шейкер со льдом, тщательно встряхните и отфильтруйте в коктейльную рюмку мартини.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3 ,   5 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3 ,  50 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (3 ,  19 ,  30, 'мл');
 insert into coctail_labels values (3, 1);
+insert into coctail_labels values (3, 2);
 
-insert into coctail values (4, 'Маргарита', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 6, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 42, 25, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 144, 10, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 195, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 223, 10, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4, 260, 200, 'гр');
+insert into coctail values (4, 'Авиация', '', 'Авиация (Aviation) — алкогольный коктейль на основе джина, вишнёвого ликёра мараскино, фиалкового ликёра Creme de Violette и лимонного сока. Коктейль так назван, вероятнее всего, из-за его серебристо-серого цвета, который напоминает о небе и стремительно развивающейся во времена изобретения коктейля (начале 20-го века) авиации. Классифицируется как коктейль на весь день (All day cocktail). Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые» (Unforgettables).', 1, 'Взбейте в шейкере и отфильтруйте в коктейльную рюмку мартини.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4 ,   5 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4 ,  45 ,  15, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (4 , 194 ,  15, 'мл');
 insert into coctail_labels values (4, 1);
+insert into coctail_labels values (4, 2);
 
-insert into coctail values (5, 'Белый русский', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 10, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 44, 30, 'мл');
---insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 10, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5, 260, 120, 'гр');
+insert into coctail values (5, 'Бакарди коктейль', '', 'Коктейль-аперитив кубинского происхождения, основными компонентами которого являются светлый ром (обычно Bacardi), гренадин и лимонный сок. Подаётся обычно перед ужином.', 1, 'Добавьте все компоненты в шейкер со льдом, хорошо встряхните и вылейте в коктейльную рюмку мартини.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5 ,   1 ,  45, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5 , 194 ,  20, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (5 , 146 ,  10, 'мл');
 insert into coctail_labels values (5, 1);
+insert into coctail_labels values (5, 2);
 
-insert into coctail values (6, 'Космополитен', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 11, 40, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 42, 20, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 198, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 195, 10, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6, 260, 120, 'гр');
+insert into coctail values (6, 'Между простынями', '', 'Алкогольный коктейль на основе светлого рома, коньяка, трипл-сека и лимонного сока. Классифицируется как коктейль на весь день (All day cocktail). Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые» (Unforgettables)', 1, 'Хорошо взбейте в шейкере все компоненты и отфильтруйте в коктейльную рюмку мартини.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6 ,   1 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6 ,   8 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6 , 267 ,  30, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (6 , 194 ,  20, 'мл');
 insert into coctail_labels values (6, 1);
+insert into coctail_labels values (6, 2);
 
-insert into coctail values (7, 'Лонг айленд айс ти', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 10, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 5, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 1, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 6, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 42, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 144, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 194, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 215, 100, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7, 260, 300, 'гр');
+insert into coctail values (7, 'Казино', '', 'Категория: коктейль на весь день.', 1, 'Добавьте компоненты в шейкер со льдом, хорошо встряхните и вылейте в коктейльную рюмку мартини. Украсьте вишней мараскино (коктейльная вишня) и лимонной цедрой.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7 ,   5 ,  40, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7 ,  45 ,  10, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7 , 124 ,  10, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (7 , 194 ,  20, 'мл');
 insert into coctail_labels values (7, 1);
+insert into coctail_labels values (7, 2);
 
-insert into coctail values (8, 'Негрони', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 5, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 39, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 91, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 221, 30, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8, 260, 120, 'гр');
+insert into coctail values (8, 'Клевер Клуб', '', 'Коктейль на основе джина, лимонного сока, малинового сиропа и яичного белка. Яичный белок добавляется для образования характерной пены.', 1, 'Хорошо взбейте в шейкере все компоненты и отфильтруйте в коктейльную рюмку мартини.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8 ,   5 ,  45, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8 , 153 ,  15, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8 , 194 ,  20, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (8 , 268 ,   1, 'шт');
 insert into coctail_labels values (8, 1);
+insert into coctail_labels values (8, 2);
+insert into coctail_labels values (8, 3);
 
-insert into coctail values (9, 'Май тай', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 2, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 47, 20, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 144, 10, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 150, 10, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 195, 20, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 226, 30, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 236, 1, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 261, 150, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9, 260, 200, 'гр');
+insert into coctail values (9, 'Дайкири', '', 'Дайкири - Daiquiri — алкогольный коктейль кубинского происхождения, основными компонентами которого являются светлый ром, сок лайма и сахар. Классифицируется как аперитив. Входит в число официальных коктейлей Международной ассоциации барменов (IBA), категория «Незабываемые» (Unforgettables).', 1, 'Добавьте все компоненты в шейкер со льдом, хорошо встряхните и вылейте в коктейльную рюмку мартини. Украсить долькой лайма.');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9 ,   1 ,  45, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9 , 195 ,  25, 'мл');
+insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (9 , 144 ,  15, 'мл');
 insert into coctail_labels values (9, 1);
-
-insert into coctail values (10, 'Манхэттен', 'initial_data/blue_laguna.png', 'Описания нет', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 16, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 39, 25, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 123, 1, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (10, 260, 300, 'гр');
-insert into coctail_labels values (10, 1);
-
-insert into coctail values (11, 'Виски сауэр', 'initial_data/blue_laguna.png', '', 1);
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 16, 50, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 123, 1, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 144, 15, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 194, 30, 'мл');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 222, 20, 'гр');
-insert into coctail_ingredient (coctail_id, ingredient_id, volume, unit) values (11, 260, 300, 'гр');
-insert into coctail_labels values (11, 1);
+insert into coctail_labels values (9, 2);
+insert into coctail_labels values (9, 4);

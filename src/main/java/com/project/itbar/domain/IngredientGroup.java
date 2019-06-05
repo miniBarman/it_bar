@@ -13,7 +13,8 @@ public enum IngredientGroup {
     FRUIT,
     HERBS,
     SAUCE_OIL,
-    ICE;
+    ICE,
+    OTHER;
 
     IngredientGroup() {
     }
