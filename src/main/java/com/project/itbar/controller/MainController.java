@@ -40,6 +40,11 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
 
+    @GetMapping("/test")
+    public String test(Model model) {
+        return "test";
+    }
+
     @GetMapping("/")
     public String main(Model model) {
         return "redirect:/main";
@@ -139,7 +144,7 @@ public class MainController {
     @GetMapping("/add_coctail")
     public String addCoctail(@AuthenticationPrincipal User user, Model model){
         User systemUser = userRepo.findByUsername("system");
-        Collection<User> users = Stream.of(user, systemUser).collect(Collectors.toList());;
+        Collection<User> users = Stream.of(user, systemUser).collect(Collectors.toList());
         model.addAttribute("allIngredients", ingredientRepo.findByAuthorIn(users));
         model.addAttribute("unitList", Constants.UNIT_LIST);
         model.addAttribute("coctailLabels", labelRepo.findAll());
