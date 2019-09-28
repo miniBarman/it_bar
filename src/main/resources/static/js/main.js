@@ -11,20 +11,14 @@ Vue.component('coctail-list', {
     template: '<div> ' +
                 '<div>List</div>' +
                 '<coctail-row v-for = "coctail in coctails" :key="coctail.id" :coctail="coctail" />' +
-              '</div>',
-    created: function() {
-        coctailApi.get().then(result =>
-            result.json().then(data =>
-                data.forEach(coctail => this.coctails.push(coctail))
-            )
-        )
-      }
+              '</div>'
 });
 
 var app = new Vue({
   el: '#app',
   template: '<coctail-list :coctails="coctails"/>',
   data: {
-    coctails: []
-  }
+      coctails: frontendData.coctails,
+      profile: frontendData.profile
+    },
 });

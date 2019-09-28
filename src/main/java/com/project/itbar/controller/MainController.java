@@ -29,6 +29,8 @@ public class MainController {
     @Autowired
     private CoctailRepo coctailRepo;
     @Autowired
+    private JpaCoctailRepo jpaCoctailRepo;
+    @Autowired
     private IngredientRepo ingredientRepo;
     @Autowired
     private CoctailIngredientRepo coctailIngredientRepo;
@@ -41,7 +43,12 @@ public class MainController {
     private String uploadPath;//ToDo probably need to move this in some one place in Application or somthing like that
 
     @GetMapping("/test")
-    public String test(Model model) {
+    public String test(Model model, @AuthenticationPrincipal User user) {
+        HashMap<Object, Object> data = new HashMap<>();
+
+        data.put("profile", user);
+        data.put("coctails", jpaCoctailRepo.findAll());
+        model.addAttribute("frontendData", data);
         return "test";
     }
 

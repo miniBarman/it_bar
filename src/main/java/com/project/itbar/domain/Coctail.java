@@ -1,5 +1,7 @@
 package com.project.itbar.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.List;
@@ -18,14 +20,17 @@ public class Coctail {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User author;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="coctail_id")
+    @JsonIgnore
     private List<CoctailIngredient> coctailIngredients;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="label_id")
+    @JsonIgnore
     private List<Label> labels;
 
     public Coctail() {

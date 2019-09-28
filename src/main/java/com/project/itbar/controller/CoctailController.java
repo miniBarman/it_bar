@@ -17,19 +17,19 @@ public class CoctailController {
     @Autowired
     private JpaCoctailRepo coctailRepo;
 
-//    @GetMapping
-//    public List<Coctail> list(){
-//        return coctailRepo.findAll();
-//    }
-
     @GetMapping
-    public List<Map<String, String>> list() {
-        List<Map<String, String>> coctails = new ArrayList<>();
-        for (Coctail coctail : coctailRepo.findAll()){
-            coctails.add(new HashMap<String, String>() {{ put("id", coctail.getId().toString()); put("name", coctail.getName()); }});
-        }
-        return coctails;
+    public List<Coctail> list(){
+        return coctailRepo.findAll();
     }
+
+//    @GetMapping
+//    public List<Map<String, String>> list() {
+//        List<Map<String, String>> coctails = new ArrayList<>();
+//        for (Coctail coctail : coctailRepo.findAll()){
+//            coctails.add(new HashMap<String, String>() {{ put("id", coctail.getId().toString()); put("name", coctail.getName()); }});
+//        }
+//        return coctails;
+//    }
 
     @GetMapping("{id}")
     public Coctail getCoctail(@PathVariable("id") Coctail coctail){
