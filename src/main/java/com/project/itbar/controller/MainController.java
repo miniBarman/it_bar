@@ -49,10 +49,10 @@ public class MainController {
         data.put("profile", user);
         data.put("coctails", jpaCoctailRepo.findAll());
         model.addAttribute("frontendData", data);
-        return "test";
+        return "index";
     }
 
-    @GetMapping("/")
+   /* @GetMapping("/")
     public String main(Model model) {
         return "redirect:/main";
     }
@@ -334,5 +334,5 @@ public class MainController {
 
         return "redirect:/ingredients";
     }
-
+*/
 }

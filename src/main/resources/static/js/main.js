@@ -1,3 +1,16 @@
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+//import App from 'pages/App.vue'
+
+Vue.use(VueResource)
+
+new Vue ({
+    el: '#app',
+    render: a => a(App)
+})
+
+
+/*
 var coctailApi = Vue.resource('/coctail{/id}');
 var ingredientApi = Vue.resource('/ingredient{/id}');
 
@@ -21,4 +34,4 @@ var app = new Vue({
       coctails: frontendData.coctails,
       profile: frontendData.profile
     },
-});
+});*/
