@@ -1,11 +1,14 @@
 <template>
-    <div>
-        List
-    </div>
+    <coctail-list :coctails="coctails"/>
 </template>
 
 <script>
+    import CoctailList from "components/coctail/CoctailList.vue"
+
     export default {
+        components: {
+            CoctailList
+        },
         data() {
             return{
                 profile: frontendData.profile,
