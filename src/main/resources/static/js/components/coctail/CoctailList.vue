@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div>List</div>
         <coctail-row v-for = "coctail in coctails" :key="coctail.id" :coctail="coctail" />
     </div>
 </template>
