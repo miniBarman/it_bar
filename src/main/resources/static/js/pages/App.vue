@@ -8,6 +8,7 @@
             <span v-if="profile">
                 {{profile.username}}
                 <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" v-bind:value=csrfToken />
                     <input type="submit" value="Sign Out"/>
                 </form>
             </span>
@@ -17,11 +18,6 @@
         </v-app-bar app>
 
         <v-content>
-            <v-form action="/login" method="post">
-                                    <div><label> User Name : <input type="text" name="username"/> </label></div>
-                                    <div><label> Password: <input type="password" name="password"/> </label></div>
-                                    <div><input type="submit" value="Sign In"/></div>
-            </v-form>
             <coctail-list :coctails="coctails"/>
         </v-content>
     </v-app>
@@ -39,7 +35,8 @@
         data() {
             return{
                 profile: frontendData.profile,
-                coctails: frontendData.coctails
+                coctails: frontendData.coctails,
+                csrfToken: csrfToken
             }
         }
     }

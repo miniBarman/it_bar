@@ -7,6 +7,7 @@
     <title>ITbar</title>
     <script th:inline="javascript">
         var frontendData = [[${frontendData}]];
+        var csrfToken = [[${_csrf.token}]];
     </script>
 </head>
 <body>

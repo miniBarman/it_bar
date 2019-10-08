@@ -9,29 +9,21 @@
 					<span class="headline">Login</span>
 				</v-card-title>
 				<v-card-text>
-					<v-form>
-						<v-text-field
-                            label="Login"
-                            name="login"
-                            prepend-icon="person"
-                            type="text"
-                            >
+					<v-form action="/login" method="post">
+						<v-text-field type="text" name="username" label="Username">
+							<v-icon>person</v-icon>
 						</v-text-field>
-
-						<v-text-field
-                            id="password"
-                            label="Password"
-                            name="password"
-                            prepend-icon="lock"
-                            type="password"
-                            >
+						<v-text-field type="password" name="password" label="Password" >
+							<v-icon>lock</v-icon>
 						</v-text-field>
+						<input type="hidden" name="_csrf" v-bind:value=csrfToken />
+						<input type="submit" value="Sign In"/>
 					</v-form>
 				</v-card-text>
 				<v-card-actions>
 					<div class="flex-grow-1"/>
-					<v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
 					<v-btn color="blue darken-1" text type="submit">Login</v-btn>
+					<v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -43,6 +35,7 @@
         data() {
             return{
                 dialog: false,
+				csrfToken: csrfToken
             }
         },
         methods: {
